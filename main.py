@@ -27,6 +27,11 @@ import webbrowser
 import shutil
 from googleapiclient.discovery import build
 from config import set_blog_id, get_blog_list_text
+import gspread
+from google.oauth2.service_account import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+import pickle
 
 # .env 파일 로드
 load_dotenv()
@@ -93,6 +98,8 @@ def extract_product_keywords(summary):
         prompt = f"""
         다음 YouTube 영상 요약 내용에서 쿠팡에서 검색할 만한 상품 키워드를 3-5개 추출해주세요.
         각 키워드는 구체적이고 검색 가능한 형태여야 합니다.
+        각 키워드는 반드시 50자 이내여야 합니다. 쿠팡 API는 50자 이상의 키워드를 허용하지 않습니다.
+        간결하고 짧은 키워드가 더 좋은 검색 결과를 제공합니다.
         응답은 JSON 형식으로 다음과 같이 작성해주세요:
         {{"keywords": ["키워드1", "키워드2", "키워드3"]}}
 
@@ -115,11 +122,26 @@ def extract_product_keywords(summary):
                 # JSON 파싱
                 result = json.loads(json_str)
                 keywords = result.get('keywords', [])
-                if keywords:
+                
+                # 키워드 길이 제한 (쿠팡 API 제한: 50자)
+                MAX_KEYWORD_LENGTH = 50
+                limited_keywords = []
+                
+                for idx, keyword in enumerate(keywords, 1):
+                    # 키워드 길이 제한
+                    if len(keyword) > MAX_KEYWORD_LENGTH:
+                        shortened_keyword = keyword[:MAX_KEYWORD_LENGTH]
+                        print(f"⚠️ 키워드 길이 초과 ({len(keyword)}자): '{keyword}'")
+                        print(f"✂️ 키워드 축소: '{shortened_keyword}'")
+                        limited_keywords.append(shortened_keyword)
+                    else:
+                        limited_keywords.append(keyword)
+                        
+                if limited_keywords:
                     print("\n추출된 키워드:")
-                    for idx, keyword in enumerate(keywords, 1):
-                        print(f"{idx}. {keyword}")
-                    return keywords
+                    for idx, keyword in enumerate(limited_keywords, 1):
+                        print(f"{idx}. {keyword} ({len(keyword)}자)")
+                    return limited_keywords
                 else:
                     print("키워드가 추출되지 않았습니다.")
                     return []
@@ -1103,6 +1125,15 @@ def summarize_text(text):
 def search_coupang(keyword, max_products=5, price_range=None):
     """쿠팡 API를 통해 상품을 검색합니다."""
     try:
+        # 키워드 길이 제한 (쿠팡 API 제한: 50자)
+        MAX_KEYWORD_LENGTH = 50
+        original_keyword = keyword
+        
+        if len(keyword) > MAX_KEYWORD_LENGTH:
+            keyword = keyword[:MAX_KEYWORD_LENGTH]
+            print(f"⚠️ 키워드 길이 초과 ({len(original_keyword)}자): '{original_keyword}'")
+            print(f"✂️ 검색 키워드 축소: '{keyword}' ({len(keyword)}자)")
+        
         print(f"\n검색: {keyword}")
         print(f"설정: 최대 {max_products}개 상품, 가격 범위: {price_range}")
         
@@ -1123,8 +1154,12 @@ def search_coupang(keyword, max_products=5, price_range=None):
         IMAGE_SIZE = os.getenv('IMAGE_SIZE', '200x200')
         
         # URL 인코딩 및 경로 설정
-        encoded_keyword = urllib.parse.quote(keyword)
-        URL = f"/v2/providers/affiliate_open_api/apis/openapi/products/search?keyword={encoded_keyword}&limit={max_products}&subid={CHANNEL_ID}&imageSize={IMAGE_SIZE}"
+        try:
+            encoded_keyword = urllib.parse.quote(keyword)
+            URL = f"/v2/providers/affiliate_open_api/apis/openapi/products/search?keyword={encoded_keyword}&limit={max_products}&subid={CHANNEL_ID}&imageSize={IMAGE_SIZE}"
+        except Exception as e:
+            print(f"⚠️ URL 인코딩 오류: {str(e)}. 검색어를 확인하세요.")
+            return []
         
         if price_range:
             min_price, max_price = price_range
@@ -1745,15 +1780,7 @@ def generate_integrated_html(video_info, summary, products, keywords):
     }}
     </style>
 
-    <div class="video-container">
-        <div class="video-info">
-            <h1 class="video-title">{video_info.get('title', '제목 없음')}</h1>
-
-               
-            </a>
-
-        </div>
-    </div>
+   
 
    
 
@@ -1856,14 +1883,267 @@ def post_to_blogger(html_file_path, title):
         print(f"❌ 블로거 포스팅 중 오류 발생: {str(e)}")
         return False
 
+def get_unchecked_youtube_url_from_sheet(force_new_token=False):
+    """구글 시트에서 체크되지 않은 YouTube URL을 하나 가져옵니다.
+    모든 워크시트를 순차적으로 확인하여 체크되지 않은 URL을 찾습니다."""
+    try:
+        # 환경 변수에서 시트 ID와 시트 이름 가져오기
+        spreadsheet_id = os.getenv('GOOGLE_SHEET_ID', '1eQl-BUMzAkP9gxX56eokwpz31_CstqTz_06rgByEw1A')
+            
+        if not spreadsheet_id:
+            print("❌ 구글 시트 ID가 설정되지 않았습니다.")
+            return None
+            
+        # 필요한 모듈 가져오기
+        try:
+            import gspread
+            from google.oauth2.service_account import Credentials
+            from google_auth_oauthlib.flow import InstalledAppFlow
+            from google.auth.transport.requests import Request
+            import pickle
+        except ImportError:
+            print("❌ gspread 모듈이 설치되어 있지 않습니다. 다음 명령어로 설치하세요:")
+            print("pip install gspread google-auth-oauthlib google-auth-httplib2 google-api-python-client")
+            return None
+            
+        # Google API 스코프 설정 - 충분한 권한을 가진 스코프 설정
+        SCOPES = [
+            'https://www.googleapis.com/auth/blogger',
+            'https://www.googleapis.com/auth/blogger.readonly',
+            'https://www.googleapis.com/auth/drive',
+            'https://www.googleapis.com/auth/drive.file',
+            'https://www.googleapis.com/auth/drive.readonly'
+        ]
+        
+        # OAuth 인증 시도
+        creds = None
+        token_file = 'token.pickle'
+        
+        # 강제로 새 토큰 생성이 요청된 경우 기존 토큰 파일 삭제
+        if force_new_token and os.path.exists(token_file):
+            print("🔄 기존 토큰 파일을 삭제하고 새로 인증합니다...")
+            os.remove(token_file)
+        
+        if os.path.exists(token_file):
+            try:
+                with open(token_file, 'rb') as token:
+                    creds = pickle.load(token)
+            except Exception as e:
+                print(f"❌ 토큰 파일 읽기 실패: {str(e)}")
+                import traceback
+                traceback.print_exc()
+                pass
+        
+        # 토큰이 없거나 만료된 경우 새로 인증
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                try:
+                    creds.refresh(Request())
+                    print("✅ 기존 토큰 갱신 성공")
+                except Exception as e:
+                    print(f"❌ 토큰 갱신 실패: {str(e)}")
+                    import traceback
+                    traceback.print_exc()
+                    print("\n💡 토큰 갱신이 실패했습니다. 새로운 인증을 시도합니다.")
+            else:
+                if os.path.exists('client_secret.json'):
+                    try:
+                        print("\n🔐 브라우저가 열리면 Google 계정으로 로그인하고 요청된 권한을 허용해주세요.")
+                        print("💡 권한 허용 후 'localhost로 연결할 수 없음' 메시지가 표시되어도 정상입니다.")
+                        flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', SCOPES)
+                        creds = flow.run_local_server(port=0)
+                        # 토큰 저장
+                        with open(token_file, 'wb') as token:
+                            pickle.dump(creds, token)
+                        print("✅ OAuth 인증 성공 및 토큰 저장 완료")
+                    except Exception as e:
+                        print(f"❌ OAuth 인증 실패: {str(e)}")
+                        import traceback
+                        traceback.print_exc()
+                        print("\n💡 OAuth 인증 실패 해결 방법:")
+                        print("1. client_secret.json 파일이 올바른지 확인하세요.")
+                        print("2. Google Cloud Console에서 해당 프로젝트에 OAuth 동의 화면이 구성되어 있는지 확인하세요.")
+                        print("3. Google Cloud Console에서 해당 프로젝트에 OAuth 클라이언트 ID가 생성되어 있는지 확인하세요.")
+                        return None
+                else:
+                    print("❌ client_secret.json 파일이 없어 OAuth 인증을 진행할 수 없습니다.")
+                    print("\n💡 client_secret.json 파일 생성 방법:")
+                    print("1. https://console.cloud.google.com/apis/credentials 페이지로 이동합니다.")
+                    print("2. '사용자 인증 정보 만들기' > 'OAuth 클라이언트 ID'를 선택합니다.")
+                    print("3. 애플리케이션 유형으로 '데스크톱 앱'을 선택합니다.")
+                    print("4. 이름을 입력하고 '만들기'를 클릭합니다.")
+                    print("5. 'JSON 다운로드' 버튼을 클릭하여 client_secret.json 파일을 다운로드합니다.")
+                    print("6. 다운로드한 파일을 이 프로그램의 실행 디렉토리에 'client_secret.json' 이름으로 저장합니다.")
+                    return None
+        
+        # gspread 클라이언트 생성
+        try:
+            client = gspread.authorize(creds)
+            print("✅ OAuth로 인증 성공")
+        except Exception as e:
+            print(f"❌ gspread 인증 실패: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return None
+        
+        # 스프레드시트 접근 시도
+        try:
+            print(f"📄 스프레드시트 ID: {spreadsheet_id} 접근 시도...")
+            spreadsheet = client.open_by_key(spreadsheet_id)
+        except gspread.exceptions.SpreadsheetNotFound:
+            print(f"❌ 스프레드시트를 찾을 수 없습니다. ID: {spreadsheet_id}")
+            print("💡 스프레드시트가 존재하고 접근 권한이 있는지 확인하세요.")
+            return None
+        except Exception as e:
+            print(f"❌ 스프레드시트 접근 오류: {str(e)}")
+            print("\n--- 상세 오류 정보 ---")
+            import traceback
+            traceback.print_exc()
+            print("\n--- 권한 확인 사항 ---")
+            print("1. 스프레드시트가 '링크가 있는 모든 사용자'와 공유되어 있는지 확인하세요.")
+            print("2. 또는 현재 로그인한 Google 계정을 스프레드시트에 공유하세요.")
+            return None
+            
+        # 워크시트 목록 확인
+        try:
+            worksheets = spreadsheet.worksheets()
+            worksheet_names = [ws.title for ws in worksheets]
+            print(f"📋 스프레드시트의 시트 목록: {', '.join(worksheet_names)}")
+            
+            if not worksheets:
+                print("❌ 스프레드시트에 워크시트가 없습니다.")
+                return None
+                
+        except Exception as e:
+            print(f"❌ 워크시트 목록 가져오기 실패: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            return None
+        
+        # 열 인덱스 설정
+        check_col = 0  # A열 (체크박스)
+        url_col = 2    # C열 (URL)
+        
+        print(f"✅ 체크 열: A열, URL 열: C열 사용")
+        
+        # 모든 워크시트를 순환하며 체크되지 않은 URL 찾기
+        print("\n🔍 모든 워크시트에서 체크되지 않은 URL 검색 중...")
+        
+        for worksheet in worksheets:
+            print(f"\n📊 '{worksheet.title}' 시트 확인 중...")
+            
+            # 시트 데이터 가져오기
+            try:
+                data = worksheet.get_all_values()
+                print(f"✅ '{worksheet.title}' 시트 데이터 로드 성공 (행: {len(data)}개)")
+                
+                if not data or len(data) <= 1:  # 헤더만 있거나 비어있음
+                    print(f"⚠️ '{worksheet.title}' 시트에 데이터가 없습니다. 다음 시트로 넘어갑니다.")
+                    continue
+                    
+                # 체크되지 않은 URL 찾기
+                for i in range(1, len(data)):
+                    row = data[i]
+                    if len(row) <= url_col:
+                        # URL 열이 없는 경우 다음 행으로
+                        continue
+                        
+                    url = row[url_col].strip() if url_col < len(row) else ""
+                    check_value = row[check_col].strip() if check_col < len(row) and len(row) > 0 else ""
+                    
+                    # 체크박스 상태 디버깅 정보 출력
+                    print(f"행 {i+1}: 체크박스 값 = '{check_value}', URL = '{url}'")
+                    
+                    # URL이 있고 체크박스가 체크되지 않은 경우 (FALSE 또는 빈 값)
+                    if url and not url.startswith("#") and (check_value == "FALSE" or check_value == ""):
+                        try:
+                            # 체크 표시 업데이트 (TRUE로 설정)
+                            cell = gspread.utils.rowcol_to_a1(i+1, check_col+1)
+                            print(f"📝 '{worksheet.title}' 시트의 {i+1}행 ({cell} 셀) 체크 업데이트 시도 중...")
+                            # update_cell 메서드는 행, 열, 값 형식으로 사용 (1-indexed)
+                            worksheet.update_cell(i+1, check_col+1, "TRUE")
+                            print(f"✅ '{worksheet.title}' 시트의 {i+1}행 체크 완료: {url}")
+                            return url
+                        except Exception as e:
+                            print(f"⚠️ 체크 업데이트 실패: {str(e)}")
+                            import traceback
+                            traceback.print_exc()
+                            print("💡 체크 업데이트 실패 이유:")
+                            print("  1. 스프레드시트에 대한 '편집자' 권한이 없을 수 있습니다.")
+                            print("  2. 네트워크 연결 문제가 있을 수 있습니다.")
+                            print("  3. Google API 할당량 제한에 도달했을 수 있습니다.")
+                            # 업데이트 실패해도 URL은 반환
+                            return url
+                
+                print(f"📢 '{worksheet.title}' 시트에서 체크되지 않은 URL을 찾지 못했습니다. 다음 시트로 넘어갑니다.")
+                
+            except Exception as e:
+                print(f"❌ '{worksheet.title}' 시트 데이터 로드 실패: {str(e)}")
+                print("다음 시트로 넘어갑니다.")
+                continue
+        
+        print("\n📢 모든 워크시트에서 체크되지 않은 URL을 찾지 못했습니다.")
+        return None
+        
+    except Exception as e:
+        print(f"❌ 예상치 못한 오류 발생: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        
+        # 시스템 정보 출력
+        import sys
+        import platform
+        print("\n--- 시스템 정보 ---")
+        print(f"Python 버전: {sys.version}")
+        print(f"운영체제: {platform.system()} {platform.release()}")
+        
+        try:
+            # 설치된 패키지 버전 확인
+            import pkg_resources
+            print("\n--- 관련 패키지 버전 ---")
+            for pkg in ['gspread', 'google-auth', 'google-auth-oauthlib', 'google-api-python-client']:
+                try:
+                    version = pkg_resources.get_distribution(pkg).version
+                    print(f"{pkg}: {version}")
+                except:
+                    print(f"{pkg}: 설치되지 않음")
+        except:
+            pass
+            
+        return None
+
 def main():
     """메인 함수"""
     try:
         # 0. 환경 변수 로드
         load_dotenv()
         
-        # 1. 유튜브 정보 가져오기 (필수)
-        video_url = input("YouTube 동영상 URL을 입력하세요: ").strip()
+        # 1. 유튜브 정보 가져오기 (1차 시도)
+        video_url = get_unchecked_youtube_url_from_sheet()
+        
+        # 첫 시도 실패 시 토큰 재생성 후 재시도
+        if not video_url:
+            print("\n🔄 인증 토큰을 재생성하여 다시 시도합니다...\n")
+            video_url = get_unchecked_youtube_url_from_sheet(force_new_token=True)
+            
+            # 그래도 실패하면 OAuth 스코프 문제를 안내하고 종료
+            if not video_url:
+                print("\n❌ 구글 시트 접근에 지속적으로 실패했습니다.")
+                print("\n💡 가능한 해결 방법:")
+                print("1. token.pickle 파일을 수동으로 삭제하고 다시 시도하세요.")
+                print("2. 구글 클라우드 콘솔에서 해당 프로젝트의 OAuth 동의 화면에서 스코프를 확인하세요.")
+                print("3. 스프레드시트가 현재 로그인한 계정과 공유되어 있는지 확인하세요.")
+                print("4. 스프레드시트를 '링크가 있는 모든 사용자'와 공유해보세요.")
+                print("5. 스프레드시트 ID가 올바른지 확인하세요: " + os.getenv('GOOGLE_SHEET_ID', '1eQl-BUMzAkP9gxX56eokwpz31_CstqTz_06rgByEw1A'))
+                print("\n🔚 프로그램을 종료합니다.")
+                return
+        
+        if video_url:
+            print(f"✅ 구글 시트에서 가져온 URL: {video_url}")
+        else:
+            # 시트에서 URL을 가져오지 못한 경우 종료
+            print("🔚 프로그램을 종료합니다.")
+            return
         
         if not video_url:
             print("❌ YouTube URL이 필요합니다.")
@@ -1901,7 +2181,14 @@ def main():
             
             if not keywords or len(keywords) == 0:
                 print("❌ 키워드 추출 실패. 영상 제목을 키워드로 사용합니다.")
-                keywords = [video_info['title']]
+                # 영상 제목을 키워드로 사용할 때 길이 제한 적용
+                MAX_KEYWORD_LENGTH = 50
+                title_keyword = video_info['title']
+                if len(title_keyword) > MAX_KEYWORD_LENGTH:
+                    title_keyword = title_keyword[:MAX_KEYWORD_LENGTH]
+                    print(f"⚠️ 제목 길이 초과 ({len(video_info['title'])}자): '{video_info['title']}'")
+                    print(f"✂️ 키워드로 사용할 제목 축소: '{title_keyword}' ({len(title_keyword)}자)")
+                keywords = [title_keyword]
             
             print(f"✅ 추출된 키워드: {', '.join(keywords)}")
             
@@ -2212,26 +2499,16 @@ def main():
                 print("⚠️ .env 파일에 BLOGGER_BLOG_ID가 설정되지 않았습니다.")
                 blog_id = input("Blogger 블로그 ID를 입력하세요: ").strip()
             
-            # 블로거 서비스 얻기
+            # 블로거 서비스 얻기 (자동으로 토큰 재생성 시도)
             service = get_credentials()
+            if not service:
+                print("⚠️ Blogger API 인증에 실패했습니다. 토큰을 재생성하여 다시 시도합니다...")
+                service = get_credentials(force_new_token=True)
             
-            # 블로그에 포스팅할 제목 설정
-            post_title = f"{video_info['title']} - 상품 추천"
-            
-            # 포스팅 시도
-            if post_html_to_blogger(service, blog_id, filepath, post_title):
-                print("✅ 블로그에 성공적으로 포스팅되었습니다!")
-                
-                # 포스팅 폴더에 복사본 저장
-                posting_dir = 'posting'
-                if not os.path.exists(posting_dir):
-                    os.makedirs(posting_dir)
-                
-                posting_file = os.path.join(posting_dir, f"posted_{safe_title}_{timestamp}.html")
-                shutil.copy2(filepath, posting_file)
-                print(f"✅ 포스팅된 HTML 파일을 {posting_dir} 폴더에 복사했습니다.")
-            else:
-                print("❌ 블로그 포스팅에 실패했습니다.")
+            if not service:
+                print("❌ Blogger API 인증에 계속 실패했습니다.")
+                print("💡 아래 명령어로 수동으로 업로드를 시도하세요:")
+                print(f"python html2blogger.py --posting {filepath} --force-new-token")
                 
                 # 포스팅 폴더에 실패한 파일 저장
                 posting_dir = 'posting'
@@ -2241,8 +2518,35 @@ def main():
                 posting_file = os.path.join(posting_dir, f"failed_{safe_title}_{timestamp}.html")
                 shutil.copy2(filepath, posting_file)
                 print(f"⚠️ 실패한 HTML 파일을 {posting_dir} 폴더에 복사했습니다.")
-                print(f"💡 다음 명령으로 다시 시도할 수 있습니다: python html2blogger.py --posting {posting_file}")
+            else:
+                # 블로그에 포스팅할 제목 설정
+                post_title = f"{video_info['title']} - 상품 추천"
                 
+                # 포스팅 시도
+                if post_html_to_blogger(service, blog_id, filepath, post_title):
+                    print("✅ 블로그에 성공적으로 포스팅되었습니다!")
+                    
+                    # 포스팅 폴더에 복사본 저장
+                    posting_dir = 'posting'
+                    if not os.path.exists(posting_dir):
+                        os.makedirs(posting_dir)
+                    
+                    posting_file = os.path.join(posting_dir, f"posted_{safe_title}_{timestamp}.html")
+                    shutil.copy2(filepath, posting_file)
+                    print(f"✅ 포스팅된 HTML 파일을 {posting_dir} 폴더에 복사했습니다.")
+                else:
+                    print("❌ 블로그 포스팅에 실패했습니다.")
+                    
+                    # 포스팅 폴더에 실패한 파일 저장
+                    posting_dir = 'posting'
+                    if not os.path.exists(posting_dir):
+                        os.makedirs(posting_dir)
+                    
+                    posting_file = os.path.join(posting_dir, f"failed_{safe_title}_{timestamp}.html")
+                    shutil.copy2(filepath, posting_file)
+                    print(f"⚠️ 실패한 HTML 파일을 {posting_dir} 폴더에 복사했습니다.")
+                    print(f"💡 다음 명령으로 다시 시도할 수 있습니다: python html2blogger.py --posting {posting_file} --force-new-token")
+                    
         except ImportError:
             print("⚠️ html2blogger 모듈을 불러올 수 없습니다.")
             print("💡 다음 명령으로 직접 업로드할 수 있습니다: python html2blogger.py --posting " + filepath)

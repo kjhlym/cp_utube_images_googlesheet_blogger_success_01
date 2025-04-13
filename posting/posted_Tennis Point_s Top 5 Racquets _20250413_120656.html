@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Point’s Top 5 Racquets of 2024 - 요약 및 추천 상품</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .video-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-thumbnail {
+        width: 100%;
+        max-width: 640px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .video-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+        color: #212121;
+    }
+    .video-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #606060;
+        margin-bottom: 15px;
+    }
+    .channel-name {
+        margin-right: 10px;
+    }
+    .view-count::before {
+        content: "•";
+        margin: 0 5px;
+    }
+    .summary-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .summary-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .keyword-tag {
+        display: inline-block;
+        background-color: #e6f2ff;
+        color: #0066cc;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .products-container {
+        margin-top: 40px;
+    }
+    .products-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .cup-list {
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .cup-list:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .product-name {
+        font-size: 16px;
+        margin-bottom: 15px;
+        line-height: 1.3;
+        height: 65px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .product-name a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+    .product-name a:hover {
+        text-decoration: underline;
+    }
+    .cup-img {
+        text-align: center;
+        margin: 15px 0;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+    .cup-img img {
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+    }
+    .cup-img img:hover {
+        transform: scale(1.05);
+    }
+    .product-price {
+        font-size: 18px;
+        color: #e94d4d;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .delivery-info {
+        color: #666;
+        font-size: 14px;
+    }
+    .ai-info {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #4285f4;
+    }
+    .ai-title {
+        color: #4285f4;
+        margin-top: 0;
+    }
+    .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+    .watch-btn {
+        display: inline-block;
+        background-color: #FF0000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background-color 0.2s;
+    }
+    .watch-btn:hover {
+        background-color: #D60000;
+    }
+    .section {
+        margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .cup-list {
+            padding: 15px;
+        }
+    }
+    @media (max-width: 480px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <style>
+    body {
+        font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .video-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-thumbnail {
+        width: 100%;
+        max-width: 640px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .video-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+        color: #212121;
+    }
+    .video-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #606060;
+        margin-bottom: 15px;
+    }
+    .channel-name {
+        margin-right: 10px;
+    }
+    .view-count::before {
+        content: "•";
+        margin: 0 5px;
+    }
+    .summary-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .summary-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .keyword-tag {
+        display: inline-block;
+        background-color: #e6f2ff;
+        color: #0066cc;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .products-container {
+        margin-top: 40px;
+    }
+    .products-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .cup-list {
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .cup-list:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .product-name {
+        font-size: 16px;
+        margin-bottom: 15px;
+        line-height: 1.3;
+        height: 65px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .product-name a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+    .product-name a:hover {
+        text-decoration: underline;
+    }
+    .cup-img {
+        text-align: center;
+        margin: 15px 0;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+    .cup-img img {
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+    }
+    .cup-img img:hover {
+        transform: scale(1.05);
+    }
+    .product-price {
+        font-size: 18px;
+        color: #e94d4d;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .delivery-info {
+        color: #666;
+        font-size: 14px;
+    }
+    .ai-info {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #4285f4;
+    }
+    .ai-title {
+        color: #4285f4;
+        margin-top: 0;
+    }
+    .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+    .watch-btn {
+        display: inline-block;
+        background-color: #FF0000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background-color 0.2s;
+    }
+    .watch-btn:hover {
+        background-color: #D60000;
+    }
+    .section {
+        margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .cup-list {
+            padding: 15px;
+        }
+    }
+    @media (max-width: 480px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+
+   
+
+   
+
+    <div class="summary-container">
+       
+        <div class="summary-content">
+            
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Tennis Point 선정 2024년 최고의 테니스 라켓 TOP 5</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; }
+        .section { margin-bottom: 2em; padding-bottom: 1em; border-bottom: 1px solid #eee; }
+        h2 { color: #333; }
+        h3 { color: #555; border-left: 4px solid #007bff; padding-left: 10px; }
+        ul { list-style-type: disc; margin-left: 20px; }
+        li { margin-bottom: 0.5em; }
+        strong { color: #0056b3; }
+        em { font-style: italic; color: #666; }
+    </style>
+</head>
+<body>
+
+    <h2>Tennis Point 선정: 2024년 최고의 테니스 라켓 TOP 5 요약</h2>
+
+    <p>Tennis Point가 선정한 2024년 최고의 테니스 라켓 5가지 모델에 대한 요약입니다. 각 라켓의 주요 특징과 핵심 포인트를 소개합니다.</p>
+
+    <div class="section">
+        <h3>1위: 바볼랏 퓨어 에어로 2023 (Babolat Pure Aero 2023)</h3>
+        <p>오랫동안 테니스계의 <strong>전설적인 라켓</strong>으로 자리매김했으며, 세계 최고의 선수들이 많이 사용합니다. 특히 스핀을 중요하게 생각하는 플레이어에게 최적화된 라켓입니다.</p>
+        <ul>
+            <li><strong>핵심 특징:</strong> 최고의 <em>스핀 잠재력</em></li>
+            <li><strong>적합 대상:</strong> 웨스턴 그립 사용자, <em>수직적인 모던 스윙</em> 경로를 가진 플레이어</li>
+            <li><strong>옵션:</strong> 98빵과 100빵 두 가지 헤드 사이즈 제공 (98은 컨트롤, 100은 파워)</li>
+            <li><strong>평가:</strong> 앞으로도 오랫동안 사랑받을 라켓</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>2위: 요넥스 이존 (Yonex Ezone - 98/100)</h3>
+        <p>요넥스 이존은 98빵과 100빵 두 가지 버전으로 제공됩니다. (100빵은 더 큰 파워와 스윗스팟 제공) 특히 98 모델은 독특한 기술로 <strong>넓은 스윗스팟</strong>을 자랑합니다.</p>
+        <ul>
+            <li><strong>핵심 특징:</strong> <em>아이소메트릭 헤드 형태</em>와 직선 드릴링으로 7% 더 넓어진 스윗스팟, 파워/컨트롤/타구감의 훌륭한 조화</li>
+            <li><strong>장점:</strong> 베이스라인에서의 충분한 스트링 베드, <em>쉬운 조작성</em>, 세련된 디자인</li>
+            <li><strong>추천 조합:</strong> 폴리투어 프로 스트링과의 조합이 좋음</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>3위: 윌슨 블레이드 v9 (Wilson Blade v9)</h3>
+        <p>테니스에서 가장 인기 있는 <strong>컨트롤 프레임</strong> 중 하나입니다. v8에서 디자인이 업데이트되었으며, 다양한 플레이 스타일에 맞는 옵션을 제공합니다.</p>
+        <ul>
+            <li><strong>핵심 특징:</strong> <em>부드러운 타구감 (Buttery feel)</em>, 높은 정밀도 (공이 원하는 곳으로 감)</li>
+            <li><strong>업데이트:</strong> 새로운 디자인, 라임 그린 색상의 <em>스테이블 그로멧(Stable grommets)</em> 추가</li>
+            <li><strong>옵션:</strong> 98/100 헤드 사이즈, 16x19 (스핀/파워), 18x20 (컨트롤/타구감) 스트링 패턴 제공</li>
+            <li><strong>성능:</strong> 베이스라인에서 신뢰할 수 있는 성능</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>4위: 바볼랏 퓨어 드라이브 30주년 에디션 (Babolat Pure Drive 30th Birthday Edition)</h3>
+        <p>테니스에서 가장 인기 있는 <strong>파워 라켓</strong>으로 오랫동안 명성을 유지해왔습니다. 30주년 기념 에디션은 각 라켓마다 독특한 디자인을 가지고 있습니다.</p>
+        <ul>
+            <li><strong>핵심 특징:</strong> <em>쉬운 파워 생성</em>, 넓은 스윗스팟</li>
+            <li><strong>장점:</strong> 중심에서 벗어난 타격(Off-center hits) 시에도 좋은 반응성과 깊이 있는 그라운드 스트로크 제공</li>
+            <li><strong>독특함:</strong> 모든 라켓이 개별적인 페인트 작업을 거쳐 <em>고유한 디자인</em>을 가짐</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>5위: 헤드 스피드 레전드 (Head Speed Legend)</h3>
+        <p>노박 조코비치가 코트에서 사용하는 색상과 디자인의 라켓입니다. 빠른 스윙 스피드를 가진 공격적인 베이스라이너에게 필요한 모든 것을 제공합니다.</p>
+        <ul>
+            <li><strong>핵심 특징:</strong> 임팩트 시 <em>뛰어난 안정성 (다운 더 볼)</em>, 빠른 스윙에도 <em>훌륭한 볼 포켓팅</em></li>
+            <li><strong>적합 대상:</strong> 빠른 스윙 스피드를 가진 <em>공격적인 베이스라이너</em></li>
+            <li><strong>장점:</strong> 준수한 스윗스팟, 모든 타입의 게임에 적합한 균형 잡힌 라켓</li>
+            <li><strong>디자인:</strong> 깔끔한 올블랙 디자인</li>
+        </ul>
+    </div>
+
+</body>
+</html>
+
+        </div>
+    </div>
+    
+        <div class="products-container">
+            <h2 class="products-title">🛒 관련 추천 상품</h2>
+           
+            <div class="product-grid">
+        
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8118753340&itemId=23020774136&vendorItemId=90054556643&traceid=V0-153-6c7b91d07edce681&requestid=20250413120650487118392573&token=31850C%7CGM" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            2024헤드 스피드 MP 레전드 300g 테니스라켓
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8118753340&itemId=23020774136&vendorItemId=90054556643&traceid=V0-153-6c7b91d07edce681&requestid=20250413120650487118392573&token=31850C%7CGM" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/RdYjercGv5slWMKDRRSHDZjIQNaxJypxOWR6o9OWJIPFhrxqu7vMJ3TYlIDjV6ol5NsV10iLXA3mFUPE83Wq7peCda-TJtLngwxxmtaVhYP1CXkKKxFlOvw6uJKSQSyAnYOaowC61q1-YYkRPxM0aiyhd-AmM3pwxJ5JRo-jDUUBWfM3AFjvXeHieeWl6M4gxVACyc7lpZCom9ykdS4h9wA22_P_nrOgx_MhwHAA05XM5tSMw5-TMPWI62Wr0X9thtK-MUmlUNE-ANvGPSmkRpZf0VNchdEYnikxgXnnH4w7ubwrZ_6ftrvPUvNnXhqrxwTTIOba-QO5Ce_-jXWOBQn0XQ==" 
+                    alt="2024헤드 스피드 MP 레전드 300g 테니스라켓" 
+                    title="2024헤드 스피드 MP 레전드 300g 테니스라켓"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/RdYjercGv5slWMKDRRSHDZjIQNaxJypxOWR6o9OWJIPFhrxqu7vMJ3TYlIDjV6ol5NsV10iLXA3mFUPE83Wq7peCda-TJtLngwxxmtaVhYP1CXkKKxFlOvw6uJKSQSyAnYOaowC61q1-YYkRPxM0aiyhd-AmM3pwxJ5JRo-jDUUBWfM3AFjvXeHieeWl6M4gxVACyc7lpZCom9ykdS4h9wA22_P_nrOgx_MhwHAA05XM5tSMw5-TMPWI62Wr0X9thtK-MUmlUNE-ANvGPSmkRpZf0VNchdEYnikxgXnnH4w7ubwrZ_6ftrvPUvNnXhqrxwTTIOba-QO5Ce_-jXWOBQn0XQ%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 326,180원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8564022826&itemId=24803977625&vendorItemId=92075660517&traceid=V0-153-73fc7720ca78ab1c&clickBeacon=57ce0f20-1814-11f0-b839-516ab2d215f3%7E3&requestid=20250413120649930055036609&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            윌슨 2025 클래시V3 테니스가방 1개
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8564022826&itemId=24803977625&vendorItemId=92075660517&traceid=V0-153-73fc7720ca78ab1c&clickBeacon=57ce0f20-1814-11f0-b839-516ab2d215f3%7E3&requestid=20250413120649930055036609&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/TwEpAEvsMfYUd67bT8wo1izzyUqtVvoTc6Mjw-DnfC1WQRD5SygNnOhmApl6zZ51TiKeRmQZPmccTdmDEt22RNAbuP3zGp6QkRIpm3g7kqdXwuoFjsFLuyb37eWwLuRRjUODJgDKyMaaa22vAqr7OBNQbJdIkUtkTc7IHNQOhc0tEXl2f_TQLrGGZhForquqF04GMHa9uq5l3zmLVcL4qPEBFbYu3XmRj84twapIahF8mCxg7JY2aCGK3AwLZi2ia9IPHCQ9OAeI8RUAi3Ht3JUlOnJ3w_zlAV6i3FxsxBFzpu4ykwh4ZomzGk37_UgbzB4aHoaeaHIeoLOGUtvcuX_4tiKUBfZj" 
+                    alt="윌슨 2025 클래시V3 테니스가방 1개" 
+                    title="윌슨 2025 클래시V3 테니스가방 1개"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/TwEpAEvsMfYUd67bT8wo1izzyUqtVvoTc6Mjw-DnfC1WQRD5SygNnOhmApl6zZ51TiKeRmQZPmccTdmDEt22RNAbuP3zGp6QkRIpm3g7kqdXwuoFjsFLuyb37eWwLuRRjUODJgDKyMaaa22vAqr7OBNQbJdIkUtkTc7IHNQOhc0tEXl2f_TQLrGGZhForquqF04GMHa9uq5l3zmLVcL4qPEBFbYu3XmRj84twapIahF8mCxg7JY2aCGK3AwLZi2ia9IPHCQ9OAeI8RUAi3Ht3JUlOnJ3w_zlAV6i3FxsxBFzpu4ykwh4ZomzGk37_UgbzB4aHoaeaHIeoLOGUtvcuX_4tiKUBfZj&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 150,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8671269330&itemId=25172180693&vendorItemId=92169421950&traceid=V0-153-8ab6dda51cd8ad78&clickBeacon=580a06b0-1814-11f0-a2ca-1bcfef329672%7E3&requestid=20250413120650318321396827&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            윌슨 테니스라켓 입문 초보 테니스채 남자 여자 성인 1개 핑크 3242
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8671269330&itemId=25172180693&vendorItemId=92169421950&traceid=V0-153-8ab6dda51cd8ad78&clickBeacon=580a06b0-1814-11f0-a2ca-1bcfef329672%7E3&requestid=20250413120650318321396827&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/dLix3SUv1s9wrrn4dF_5dDqcIii8S2P3oqVXyTPJj36fdVcOEIqWCCHWrISaAaJ1n2eZUYhGNXGwiqg4XPl6TdQLC0MZRPSN6J1vyp9PWG8eGQmlQlZDVKsoR_hZ-TRkFfUONFPpmaGhr34iLLun_9psSVSuFw57SkjmlGa_dSUzcBcZk8V_Dy0GEBkHkLVTI0EmD3w7hPzIseHbo_K5Kb6AXTRKD3X4jbya_rvUNd4QKb2IpB_G8bKDU4ZQTLhxrPJiGJ9hJPad0JXMuA2qNxkHV_BKbDMD_p2Fb7FUlMmSGf8bzgFrzhW1Lk9sQLaOmpwyDIGgPXUAZTMpDwNuyrXmM1ii7skB" 
+                    alt="윌슨 테니스라켓 입문 초보 테니스채 남자 여자 성인 1개 핑크 3242" 
+                    title="윌슨 테니스라켓 입문 초보 테니스채 남자 여자 성인 1개 핑크 3242"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/dLix3SUv1s9wrrn4dF_5dDqcIii8S2P3oqVXyTPJj36fdVcOEIqWCCHWrISaAaJ1n2eZUYhGNXGwiqg4XPl6TdQLC0MZRPSN6J1vyp9PWG8eGQmlQlZDVKsoR_hZ-TRkFfUONFPpmaGhr34iLLun_9psSVSuFw57SkjmlGa_dSUzcBcZk8V_Dy0GEBkHkLVTI0EmD3w7hPzIseHbo_K5Kb6AXTRKD3X4jbya_rvUNd4QKb2IpB_G8bKDU4ZQTLhxrPJiGJ9hJPad0JXMuA2qNxkHV_BKbDMD_p2Fb7FUlMmSGf8bzgFrzhW1Lk9sQLaOmpwyDIGgPXUAZTMpDwNuyrXmM1ii7skB&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 71,980원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8556668908&itemId=24778693949&vendorItemId=91786675083&traceid=V0-153-e8bf3c12f91200ee&clickBeacon=57eb0d00-1814-11f0-85dc-7b0b20afe097%7E3&requestid=20250413120650089041619032&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            요넥스 배드민턴 라켓 아크세이버 73 + 풀커버 1세트 73 (YELLOW)
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8556668908&itemId=24778693949&vendorItemId=91786675083&traceid=V0-153-e8bf3c12f91200ee&clickBeacon=57eb0d00-1814-11f0-85dc-7b0b20afe097%7E3&requestid=20250413120650089041619032&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/xEG1SsRrzzAdLA7lxOpF9z3w5j6u-2swcrepzfcxe207diLQo7Bs9YYjxeLHTYu9NEmSIai5bOE42qcTwXRbq9IQvQ_doKJPjXvR6257NgCGyTZVl1YWbdCXnp0w0XdQ1XLGLG0kUI4GTkDbSisGmIP3f9mpp_DG7LdqT7z5pKHqWHVQxVFz9bKmmn-_bdLSQq1tHLXFbCySX9cNvx3R7J9EGZU4bta2P1bTlGc0sq297FpSgVKBl6EIaPW5VvgqcP1lWNRjpen9Zwdn6ZFVqJNAoEq4R1Wm4_xAjMLgu3yiM1B0cKX5jkh_hkl8hHsqiP1Q8WW66pE=" 
+                    alt="요넥스 배드민턴 라켓 아크세이버 73 + 풀커버 1세트 73 (YELLOW)" 
+                    title="요넥스 배드민턴 라켓 아크세이버 73 + 풀커버 1세트 73 (YELLOW)"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/xEG1SsRrzzAdLA7lxOpF9z3w5j6u-2swcrepzfcxe207diLQo7Bs9YYjxeLHTYu9NEmSIai5bOE42qcTwXRbq9IQvQ_doKJPjXvR6257NgCGyTZVl1YWbdCXnp0w0XdQ1XLGLG0kUI4GTkDbSisGmIP3f9mpp_DG7LdqT7z5pKHqWHVQxVFz9bKmmn-_bdLSQq1tHLXFbCySX9cNvx3R7J9EGZU4bta2P1bTlGc0sq297FpSgVKBl6EIaPW5VvgqcP1lWNRjpen9Zwdn6ZFVqJNAoEq4R1Wm4_xAjMLgu3yiM1B0cKX5jkh_hkl8hHsqiP1Q8WW66pE%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 67,830원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8264547724&itemId=23812191583&vendorItemId=90835992297&traceid=V0-153-8e624bacef477c65&requestid=20250413120650487118392573&token=31850C%7CGM" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            2024 헤드 스피드 레전드 PRO 310g  G2 G3 무료스트링외 4종
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8264547724&itemId=23812191583&vendorItemId=90835992297&traceid=V0-153-8e624bacef477c65&requestid=20250413120650487118392573&token=31850C%7CGM" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/Jk4tYJ69mSG9e-yVJmuFnocj-2w84lsuYkDRi2kFTX8HypqcxYItmhQJvzmshBuBPqi35yYSHRymquJpbBgOKoJYbZVNZbvVTMFKJbGsgDcE1Ye0lexzTKVOI0g76P7bM2aue9mK78Xn7rj6AdxtVKsH97UIwHzl1lTvjFULUGP8HHRHHvFyGZf4fZ044wgI9Whe_kVpozLKCOvQ5D9hOlHeNFRFFm3bd4dq7wogoBpdUKd0DhAdgVnG8A9n792jRCcntwNQPnhwiXv93joO8qXNYk3Yk7sMVTds5C--Yo2qwtFs78fWPLiU-bAnaIAwLuY8DP7m8f5jV4HaiGp8oryOjQ==" 
+                    alt="2024 헤드 스피드 레전드 PRO 310g  G2 G3 무료스트링외 4종" 
+                    title="2024 헤드 스피드 레전드 PRO 310g  G2 G3 무료스트링외 4종"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/Jk4tYJ69mSG9e-yVJmuFnocj-2w84lsuYkDRi2kFTX8HypqcxYItmhQJvzmshBuBPqi35yYSHRymquJpbBgOKoJYbZVNZbvVTMFKJbGsgDcE1Ye0lexzTKVOI0g76P7bM2aue9mK78Xn7rj6AdxtVKsH97UIwHzl1lTvjFULUGP8HHRHHvFyGZf4fZ044wgI9Whe_kVpozLKCOvQ5D9hOlHeNFRFFm3bd4dq7wogoBpdUKd0DhAdgVnG8A9n792jRCcntwNQPnhwiXv93joO8qXNYk3Yk7sMVTds5C--Yo2qwtFs78fWPLiU-bAnaIAwLuY8DP7m8f5jV4HaiGp8oryOjQ%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 338,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7123735364&itemId=17843101908&vendorItemId=92020094237&traceid=V0-153-16876282760989f3&requestid=20250413120649930055036609&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            바볼랏 2023 퓨어 에어로 100 라켓
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7123735364&itemId=17843101908&vendorItemId=92020094237&traceid=V0-153-16876282760989f3&requestid=20250413120649930055036609&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/MDy0fwSl8BhAdRhdMB-dasmL0LwAoykTobXUrGw9sAH91u8a335DeyHLxMfc7r-KuAk5RT-Zpn741l_SEL8GIfRjrLnk6oOcgGTm0cEGSAx6XflTiAeWyP86GpLIrrAZ32cgTJEFSzz1toFz7GroKs4XddXHF7mknq31YkrFVhcsUe8es1TUyeiLPg7v1EiCMg2UXZwXB7zUHSl8fytsz7vCl-ip0nXLazc9unh8M8nx5ykVUxXgRCsDrPwXJgM-dQIiJyU6F09awtZN-ej6LCJ3rSVTpJ7oLtcjn-LwC9eHXB6pVvfeQ6pXamKDNtM2EbLMmTROKCREpA==" 
+                    alt="바볼랏 2023 퓨어 에어로 100 라켓" 
+                    title="바볼랏 2023 퓨어 에어로 100 라켓"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/MDy0fwSl8BhAdRhdMB-dasmL0LwAoykTobXUrGw9sAH91u8a335DeyHLxMfc7r-KuAk5RT-Zpn741l_SEL8GIfRjrLnk6oOcgGTm0cEGSAx6XflTiAeWyP86GpLIrrAZ32cgTJEFSzz1toFz7GroKs4XddXHF7mknq31YkrFVhcsUe8es1TUyeiLPg7v1EiCMg2UXZwXB7zUHSl8fytsz7vCl-ip0nXLazc9unh8M8nx5ykVUxXgRCsDrPwXJgM-dQIiJyU6F09awtZN-ej6LCJ3rSVTpJ7oLtcjn-LwC9eHXB6pVvfeQ6pXamKDNtM2EbLMmTROKCREpA%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 288,800원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7865754949&itemId=21474792490&vendorItemId=88529058091&traceid=V0-153-69b5dd3268ebf585&requestid=20250413120650318321396827&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            2024 윌슨 블레이드 100 v9 테니스 라켓 300g
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7865754949&itemId=21474792490&vendorItemId=88529058091&traceid=V0-153-69b5dd3268ebf585&requestid=20250413120650318321396827&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/UR9ALhBY2w8Z54MFURVjeCMhPjFzmn5qMFvOTwxWGrSre89WlnPJ7pOW_pJj18kiuLsP44-I097hEWOIwCNtiEYPhDpfLLw0iNh7jUaormlie8fppZ1aHTlzjmGNxoczHakov-QwS2QZHh4_tI0za0c7dmkkYaSVSrAd5bF2_zH3kcK7_FsovvuJx5Jc1gf7SAXOoCqdqpJA3ap7aNIVhuO2I7Tlx_kgIHduiAyXfdKgf_MtuyPm_wEi5Z2UWTuWYD269AP0jpOBi_NpAwAqhmuc3M19e9P14D4hsJ-ejZkPlPuDlz-gIjTDhACopPr6n2NeBVhBl4L0b19a-jZLllyuCiGUwe2hfv6D" 
+                    alt="2024 윌슨 블레이드 100 v9 테니스 라켓 300g" 
+                    title="2024 윌슨 블레이드 100 v9 테니스 라켓 300g"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/UR9ALhBY2w8Z54MFURVjeCMhPjFzmn5qMFvOTwxWGrSre89WlnPJ7pOW_pJj18kiuLsP44-I097hEWOIwCNtiEYPhDpfLLw0iNh7jUaormlie8fppZ1aHTlzjmGNxoczHakov-QwS2QZHh4_tI0za0c7dmkkYaSVSrAd5bF2_zH3kcK7_FsovvuJx5Jc1gf7SAXOoCqdqpJA3ap7aNIVhuO2I7Tlx_kgIHduiAyXfdKgf_MtuyPm_wEi5Z2UWTuWYD269AP0jpOBi_NpAwAqhmuc3M19e9P14D4hsJ-ejZkPlPuDlz-gIjTDhACopPr6n2NeBVhBl4L0b19a-jZLllyuCiGUwe2hfv6D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 278,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8622380666&itemId=25015198564&vendorItemId=92020094277&traceid=V0-153-829528ef0a83b8c6&requestid=20250413120650089041619032&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            요넥스 이존 98 BSBL 라켓
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8622380666&itemId=25015198564&vendorItemId=92020094277&traceid=V0-153-829528ef0a83b8c6&requestid=20250413120650089041619032&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/3OgzRfCsLVWaS8g53CJAkSMhFutZ4sxId7uvv59LS3pEI3gOXCT6v7qyXRd-wImj4ehVjVHt6gtFkWAX-0x57qEAgrNofIyE9Zwcye3WpteDLenAw3X7gUBKcqysWJFqezCMfQfsPBOb5r4Yiig6sBMyVGoVhIh2MN2EEeoa8BY7w_qOYvQ36S8km9YYWxRWPvbFp4gprn13vtqouViMo-Cej6f6l0msquEBp0KF2rRAS6prR_51HX0-h73bOllpywCQuxkRBlGziU6mbntIO2qF_xoy16Czbpw3N-CPWs-DjBa952HEYfRF6XzDO-DvDICoRlHN3ajgXg==" 
+                    alt="요넥스 이존 98 BSBL 라켓" 
+                    title="요넥스 이존 98 BSBL 라켓"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/3OgzRfCsLVWaS8g53CJAkSMhFutZ4sxId7uvv59LS3pEI3gOXCT6v7qyXRd-wImj4ehVjVHt6gtFkWAX-0x57qEAgrNofIyE9Zwcye3WpteDLenAw3X7gUBKcqysWJFqezCMfQfsPBOb5r4Yiig6sBMyVGoVhIh2MN2EEeoa8BY7w_qOYvQ36S8km9YYWxRWPvbFp4gprn13vtqouViMo-Cej6f6l0msquEBp0KF2rRAS6prR_51HX0-h73bOllpywCQuxkRBlGziU6mbntIO2qF_xoy16Czbpw3N-CPWs-DjBa952HEYfRF6XzDO-DvDICoRlHN3ajgXg%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 269,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8118753372&itemId=23020774242&vendorItemId=90054556015&traceid=V0-153-3785d5f54790f294&requestid=20250413120650487118392573&token=31850C%7CGM" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            2024헤드 스피드 프로 레전드 310g 테니스라켓
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8118753372&itemId=23020774242&vendorItemId=90054556015&traceid=V0-153-3785d5f54790f294&requestid=20250413120650487118392573&token=31850C%7CGM" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/-uI-u2zCTft5-1PM-ne0RSpMiNxSiW7TohR_bhaRctxThkP0Yu64RDbeHWK0qQSCXcVGRB7-BBqIjyaA8aJ0qBwXJD_K5wky2Ub6bA74DN-ixnhO-lzVZWktYH8E7JAPXIvSV_1026OmsTXGds58UeHwEv8HQ8xzoPHt_ldRa8F0v5NT27Ck0lqGgluMlkjKSmKd_bjLlsQUh2M5cr_PBVEormsFWCf5mrCy_ZFNeURnkkUBWZURbWh9Su_6Bnz2fRT03sH5KyzUeR7Qy0n7jVRXyECT_UGYFXrASf_06r_EDOjzTkfKlUwMd1UG-DuCilhFat6VBER7hINlh43EVJKYcOzx-4JtkF4=" 
+                    alt="2024헤드 스피드 프로 레전드 310g 테니스라켓" 
+                    title="2024헤드 스피드 프로 레전드 310g 테니스라켓"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/-uI-u2zCTft5-1PM-ne0RSpMiNxSiW7TohR_bhaRctxThkP0Yu64RDbeHWK0qQSCXcVGRB7-BBqIjyaA8aJ0qBwXJD_K5wky2Ub6bA74DN-ixnhO-lzVZWktYH8E7JAPXIvSV_1026OmsTXGds58UeHwEv8HQ8xzoPHt_ldRa8F0v5NT27Ck0lqGgluMlkjKSmKd_bjLlsQUh2M5cr_PBVEormsFWCf5mrCy_ZFNeURnkkUBWZURbWh9Su_6Bnz2fRT03sH5KyzUeR7Qy0n7jVRXyECT_UGYFXrASf_06r_EDOjzTkfKlUwMd1UG-DuCilhFat6VBER7hINlh43EVJKYcOzx-4JtkF4%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 328,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8068224373&itemId=22699362690&vendorItemId=86637115488&traceid=V0-153-d32b4af56fefb0d7&requestid=20250413120649930055036609&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            바볼랏 2023 퓨어 에어로 라이트 100 테니스 라켓
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8068224373&itemId=22699362690&vendorItemId=86637115488&traceid=V0-153-d32b4af56fefb0d7&requestid=20250413120649930055036609&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/Bg-KIY_6gbYWFoddBsKl53E3iuy7Y5EL0BGn2dQMQO1MaZbhaggGqf4WAQnhBEqjJlmdzNzyiNPHSOQhbHkX_E6Af6Kf42yFDlPot-09u5zDiAw8n9UR7_Hu2UDUsGtxlauS3W7Cca2SzidMSKPItEYocTZ-nIK1RAPgykKJ5ZFwX4-jUZg-FVeHOL8KAW6VpBeZAjKcASmjTzSUzsE-t04UzYEi29oPh8P9CtE9al5Lz8RXThfc0tLKpj7DGJbSn2N7Dugr88FiIs8iQdoki5BeT2KqnklLd9IKahCGdniFoFe_0tEOM15ijzAWOMvh_pS_" 
+                    alt="바볼랏 2023 퓨어 에어로 라이트 100 테니스 라켓" 
+                    title="바볼랏 2023 퓨어 에어로 라이트 100 테니스 라켓"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/Bg-KIY_6gbYWFoddBsKl53E3iuy7Y5EL0BGn2dQMQO1MaZbhaggGqf4WAQnhBEqjJlmdzNzyiNPHSOQhbHkX_E6Af6Kf42yFDlPot-09u5zDiAw8n9UR7_Hu2UDUsGtxlauS3W7Cca2SzidMSKPItEYocTZ-nIK1RAPgykKJ5ZFwX4-jUZg-FVeHOL8KAW6VpBeZAjKcASmjTzSUzsE-t04UzYEi29oPh8P9CtE9al5Lz8RXThfc0tLKpj7DGJbSn2N7Dugr88FiIs8iQdoki5BeT2KqnklLd9IKahCGdniFoFe_0tEOM15ijzAWOMvh_pS_&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 295,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    <div class="footer">
+       
+        <p>"이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."</p>
+    </div>
+    
+</body>
+</html>

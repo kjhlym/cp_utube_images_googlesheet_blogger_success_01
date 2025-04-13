@@ -13,12 +13,19 @@ import re
 import argparse
 from google.oauth2.credentials import Credentials
 from config import BLOGGER_BLOGS, DEFAULT_BLOG_NUMBER, get_blog_list_text, set_blog_id, BLOGGER_BLOG_ID
+import googleapiclient.errors
 
 # Load environment variables
 load_dotenv()
 
 # If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/blogger']
+SCOPES = [
+    'https://www.googleapis.com/auth/blogger',
+    'https://www.googleapis.com/auth/blogger.readonly',
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.file',
+    'https://www.googleapis.com/auth/drive.readonly'
+]
 
 def select_blog():
     """사용자에게 블로그를 선택하도록 합니다."""
@@ -41,158 +48,138 @@ def select_blog():
         print(f"잘못된 입력입니다. 기본값({DEFAULT_BLOG_NUMBER})을 사용합니다.")
         return DEFAULT_BLOG_NUMBER
 
-def get_credentials():
-    """Google API 인증 정보를 가져옵니다."""
+def get_credentials(force_new_token=False):
+    """OAuth 2.0 인증 정보를 가져옵니다."""
     creds = None
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
     
+    # token.pickle 파일은 사용자의 액세스 및 새로 고침 토큰을 저장
+    token_path = 'token.pickle'
+    
+    # 강제로 새 토큰 생성이 요청된 경우 기존 토큰 파일 삭제
+    if force_new_token and os.path.exists(token_path):
+        try:
+            os.remove(token_path)
+            print("🔄 기존 토큰 파일을 삭제하고 새로 인증합니다...")
+        except Exception as e:
+            print(f"⚠️ 토큰 파일 삭제 실패: {str(e)}")
+    
+    # 토큰 파일이 있으면 로드
+    if os.path.exists(token_path):
+        try:
+            with open(token_path, 'rb') as token:
+                creds = pickle.load(token)
+            print("✅ 기존 토큰 로드 성공")
+        except Exception as e:
+            print(f"⚠️ 토큰 파일 로드 실패: {str(e)}")
+            creds = None
+    
+    # 유효한 인증 정보가 없으면 새로 생성
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'client_secret.json', SCOPES)
-            creds = flow.run_local_server(port=0)
+            try:
+                creds.refresh(Request())
+                print("✅ 만료된 토큰 갱신 성공")
+            except Exception as e:
+                print(f"⚠️ 토큰 갱신 실패: {str(e)}")
+                print("💡 새로운 인증을 시도합니다.")
+                creds = None
         
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(creds, token)
+        if not creds:
+            # client_secret.json 파일 확인
+            if not os.path.exists('client_secret.json'):
+                print("❌ client_secret.json 파일이 없습니다.")
+                print("💡 다음 단계를 따라 client_secret.json 파일을 생성하세요:")
+                print("1. https://console.cloud.google.com/apis/credentials 페이지로 이동")
+                print("2. '사용자 인증 정보 만들기' > 'OAuth 클라이언트 ID'를 선택")
+                print("3. 애플리케이션 유형으로 '데스크톱 앱'을 선택")
+                print("4. 이름을 입력하고 '만들기'를 클릭")
+                print("5. 'JSON 다운로드' 버튼을 클릭하여 파일을 다운로드")
+                print("6. 다운로드한 파일을 이 프로그램의 실행 디렉토리에 'client_secret.json' 이름으로 저장")
+                return None
+                
+            try:
+                print("\n🔐 브라우저가 열리면 Google 계정으로 로그인하고 요청된 모든 권한을 허용해주세요.")
+                print("💡 권한 허용 후 '승인되었습니다' 또는 'localhost로 연결할 수 없음' 메시지가 표시되면 정상입니다.")
+                flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', SCOPES)
+                creds = flow.run_local_server(port=0)
+                
+                # 토큰 저장
+                with open(token_path, 'wb') as token:
+                    pickle.dump(creds, token)
+                print("✅ 새 인증 토큰 생성 및 저장 성공")
+            except Exception as e:
+                print(f"❌ 인증 프로세스 실패: {str(e)}")
+                print("\n💡 다음 사항을 확인하세요:")
+                print("1. 인터넷 연결이 정상인지 확인")
+                print("2. Google Cloud Console에서 OAuth 동의 화면이 구성되어 있는지 확인")
+                print("3. API 및 서비스 > 사용자 인증 정보에서 OAuth 클라이언트 ID가 생성되어 있는지 확인")
+                print("4. client_secret.json 파일이 올바른지 확인")
+                return None
     
-    # Blogger API 서비스 객체 생성 및 반환
     try:
+        # 서비스 생성
         service = build('blogger', 'v3', credentials=creds)
+        print("✅ Blogger API 서비스 생성 성공")
         return service
     except Exception as e:
-        print(f"Error building Blogger service: {str(e)}")
+        print(f"❌ Blogger API 서비스 생성 실패: {str(e)}")
+        print("\n💡 다음 사항을 확인하세요:")
+        print("1. Google Cloud Console에서 Blogger API가 활성화되어 있는지 확인")
+        print("2. 인증된 계정이 블로그에 접근할 권한이 있는지 확인")
+        print("3. 인터넷 연결이 정상인지 확인")
+        print("4. token.pickle 파일을 삭제하고 다시 시도")
         return None
 
-def post_html_to_blogger(service, blog_id, html_content, title):
-    """HTML 컨텐츠를 블로거에 포스팅합니다."""
+def post_html_to_blogger(service, blog_id, html_file_path, title):
+    """HTML 파일을 Blogger에 포스팅합니다."""
     try:
-        # HTML 파일인 경우 파일 내용을 읽어옴
-        if isinstance(html_content, str) and html_content.endswith('.html'):
-            with open(html_content, 'r', encoding='utf-8') as f:
-                content = f.read()
-        else:
-            content = html_content
-        
-        # HTML 내용 정리
-        # 문자열이 아닌 경우 문자열로 변환
-        if not isinstance(content, str):
-            content = str(content)
+        print(f"📄 HTML 파일을 읽는 중: {html_file_path}")
+        with open(html_file_path, 'r', encoding='utf-8') as f:
+            html_content = f.read()
             
-        # 파일 경로로 오인될 수 있는 패턴인지 확인
-        if content.strip().endswith('.html') and os.path.exists(content.strip()):
-            with open(content.strip(), 'r', encoding='utf-8') as f:
-                content = f.read()
+        print(f"🔍 HTML 파일 크기: {len(html_content)} 바이트")
+        print(f"📝 포스팅 제목: {title}")
+        print(f"🌐 블로그 ID: {blog_id}")
         
-        # DOCTYPE 태그 제거 (BeautifulSoup으로 파싱하기 전에 문자열에서 직접 제거)
-        content = re.sub(r'<!DOCTYPE[^>]*>', '', content)
-        
-        # 마크다운 코드 블록 표시 제거 (```html과 ```)
-        content = content.replace('```html', '')
-        content = content.replace('```', '')
-                
-        soup = BeautifulSoup(content, 'html.parser')
-        
-        # script 태그만 제거하고 style 태그는 유지
-        for tag in soup.find_all('script'):
-            tag.decompose()
-            
-        print("script 태그를 제거했습니다. style 태그는 유지합니다.")
-        
-        # 중첩된 HTML 구조 검사 및 수정
-        summary_div = soup.select_one('div.summary')
-        if summary_div and summary_div.find('html'):
-            # 중첩된 HTML 구조 발견, 내용만 추출
-            print("⚠️ 중첩된 HTML 구조가 발견되었습니다. 내용만 추출합니다.")
-            nested_body = summary_div.find('body')
-            if nested_body:
-                # 중첩된 body의 내용으로 대체
-                summary_div.replace_with(BeautifulSoup(nested_body.decode_contents(), 'html.parser'))
-            else:
-                # body가 없는 경우, div.summary 내부의 doctype과 html 태그 제거
-                for tag in summary_div.find_all(['html', 'head']):
-                    tag.unwrap()  # 태그 제거하고 내용만 유지
-
-        # 이미지 URL 상대 경로 처리 및 확인
-        print("이미지 경로 처리 중...")
-        images = soup.find_all('img')
-        if images:
-            print(f"총 {len(images)}개의 이미지 발견")
-            for i, img in enumerate(images):
-                if 'src' in img.attrs:
-                    img_src = img['src']
-                    # base64 데이터 URL 확인
-                    if img_src.startswith('data:image'):
-                        print(f"이미지 {i+1}: Base64 데이터 URL (이미 포함됨)")
-                    # 절대 URL 확인
-                    elif img_src.startswith(('http://', 'https://')):
-                        print(f"이미지 {i+1}: 절대 URL - {img_src[:50]}...")
-                    # 상대 경로 처리
-                    elif img_src.startswith(('images/', './images/', '../images/')):
-                        print(f"⚠️ 이미지 {i+1}: 상대 경로 URL - {img_src}")
-                        # 여기서는 경고만 출력하고, 실제 이미지 경로는 유지
-                        # Blogger API는 HTML 내용의 상대 경로 이미지를 처리하지 못할 수 있음
-                    else:
-                        print(f"이미지 {i+1}: 기타 경로 - {img_src[:50]}...")
-        else:
-            print("이미지가 발견되지 않았습니다.")
-        
-        # 썸네일 이미지 URL 추출 (첫 번째 이미지)
-        thumbnail_url = ""
-        first_img = soup.find('img')
-        if first_img and first_img.get('src'):
-            thumbnail_url = first_img['src']
-            # 상대 경로인 경우 처리 (경고만 표시)
-            if thumbnail_url.startswith(('images/', './images/', '../images/')):
-                print(f"⚠️ 썸네일 상대 경로 감지: {thumbnail_url}")
-                print("블로거에서는 외부 URL만 썸네일로 사용할 수 있습니다.")
-        
-        # HTML 구조 태그 제거
-        body = soup.find('body')
-        if body:
-            # body 태그 내부의 실제 콘텐츠만 추출
-            # 이미지 태그는 보존되도록 함
-            content = body.decode_contents().strip()
-            print("body 태그에서 내용만 추출했습니다. (이미지 태그 보존)")
-        else:
-            # body 태그가 없는 경우, html과 head 태그를 제외한 내용 추출
-            for tag in soup.find_all(['html', 'head']):
-                tag.unwrap()  # 태그 제거하고 내용만 유지
-            
-            content = str(soup).strip()
-            print("HTML 구조 태그를 제거했습니다. (이미지 태그 보존)")
-        
-        print(f"HTML 구조 태그가 제거된 내용으로 포스팅합니다. 이미지는 유지됩니다.")
-        
-        # 포스트 생성 및 업로드
         post = {
+            'kind': 'blogger#post',
+            'blog': {
+                'id': blog_id
+            },
             'title': title,
-            'content': content,  # 이미지 태그가 포함된 콘텐츠
-            'status': 'DRAFT'  # DRAFT로 저장 (나중에 검토 후 발행)
+            'content': html_content
         }
         
-        # 이미지 URL이 있는 경우 포스트 데이터에 이미지 설정 추가
-        if thumbnail_url:
-            # 이미지가 base64 데이터 URL인지 확인
-            if thumbnail_url.startswith('data:image'):
-                print("Base64 이미지는 Blogger API에서 직접 썸네일로 사용할 수 없습니다.")
-                # 이 경우 HTML 내 이미지가 포스트에 포함되므로 별도 처리 불필요
-            elif not thumbnail_url.startswith(('images/', './images/', '../images/')):
-                print(f"썸네일 이미지 URL: {thumbnail_url}")
-                # Blogger API에서 지원하는 경우 images 필드 추가
-                post['images'] = [{'url': thumbnail_url}]
-        
+        print("🔄 Blogger API에 포스팅 중...")
         response = service.posts().insert(blogId=blog_id, body=post).execute()
-        post_id = response.get('id')
-        print(f"Successfully posted: {title}")
-        print(f"Post ID: {post_id}")
-        print(f"블로그 URL: https://www.blogger.com/blog/post/edit/{blog_id}/{post_id}")
-        return True
+        
+        print(f"✅ 블로그 포스팅 성공: {response.get('url', '알 수 없는 URL')}")
+        return response.get('url')
+    except googleapiclient.errors.HttpError as e:
+        print(f"Error posting to Blogger: {e}")
+        
+        # 인증 스코프 부족 오류 처리
+        if "Request had insufficient authentication scopes" in str(e):
+            print("\n⚠️ Blogger API 접근 권한 부족 오류")
+            print("💡 문제 해결 방법:")
+            print("1. token.pickle 파일을 삭제합니다.")
+            print("2. 프로그램을 다시 실행하면 새로운 인증 프로세스가 시작됩니다.")
+            print("3. 인증 시 모든 요청된 권한을 허용해주세요.")
+            
+            # 토큰 파일 삭제
+            token_path = 'token.pickle'
+            if os.path.exists(token_path):
+                try:
+                    os.remove(token_path)
+                    print("✅ token.pickle 파일이 자동으로 삭제되었습니다. 다음 실행 시 새로 인증하세요.")
+                except Exception as remove_err:
+                    print(f"❌ token.pickle 파일 삭제 실패: {remove_err}")
+                    print("💡 수동으로 token.pickle 파일을 삭제하세요.")
+        
+        traceback.print_exc()
+        return False
     except Exception as e:
-        print(f"Error posting to Blogger: {str(e)}")
+        print(f"❌ 블로거 포스팅 중 오류 발생: {str(e)}")
         traceback.print_exc()
         return False
 
@@ -269,7 +256,7 @@ def post_specific_file(service, blog_id, file_path):
     
     title, content = process_html_file(file_path)
     
-    if post_html_to_blogger(service, blog_id, content, title):
+    if post_html_to_blogger(service, blog_id, file_path, title):
         print(f"✅ 성공적으로 포스팅 완료: {title}")
         return True
     else:
@@ -277,26 +264,43 @@ def post_specific_file(service, blog_id, file_path):
         return False
 
 def main():
+    parser = argparse.ArgumentParser(description='Blogger 포스팅 도구')
+    parser.add_argument('--posting', help='포스팅할 HTML 파일 경로')
+    parser.add_argument('--folder', help='포스팅할 HTML 파일이 있는 폴더 경로')
+    parser.add_argument('--blog', type=int, help='블로그 번호 (기본값: 1)')
+    parser.add_argument('--delete', action='store_true', help='포스팅 후 원본 파일 삭제')
+    parser.add_argument('--all', action='store_true', help='폴더 내 모든 HTML 파일 포스팅')
+    parser.add_argument('--force-new-token', action='store_true', help='인증 토큰 강제 재생성')
+    
+    args = parser.parse_args()
+    
+    # 블로그 선택
+    blog_id = BLOGGER_BLOG_ID
+    if args.blog:
+        blog_id = set_blog_id(args.blog)
+    
+    # 토큰 강제 재생성 옵션이 있는 경우
+    force_new_token = args.force_new_token
+    
+    # Blogger API 서비스 생성
+    service = get_credentials(force_new_token=force_new_token)
+    
+    # 인증에 실패한 경우 토큰을 강제로 재생성하고 다시 시도
+    if service is None and not force_new_token:
+        print("\n🔄 인증에 실패했습니다. 토큰을 재생성하여 다시 시도합니다...")
+        service = get_credentials(force_new_token=True)
+        
+        if service is None:
+            print("\n❌ 인증에 계속 실패하고 있습니다.")
+            print("💡 다음 사항을 확인하세요:")
+            print("1. client_secret.json 파일이 올바른지 확인하세요.")
+            print("2. Google Cloud Console에서 Blogger API가 활성화되어 있는지 확인하세요.")
+            print("3. 프로젝트의 OAuth 동의 화면과 범위가 올바르게 설정되어 있는지 확인하세요.")
+            return 1
+    
     try:
         print("=== HTML to Blogger 업로더 ===")
         print("-" * 40)
-        
-        # 인자 파싱
-        parser = argparse.ArgumentParser(description='HTML 파일을 Blogger에 포스팅합니다.')
-        parser.add_argument('--auto', action='store_true', help='모든 HTML 파일을 자동으로 포스팅합니다.')
-        parser.add_argument('--posting', type=str, help='특정 HTML 파일을 직접 포스팅합니다.')
-        args = parser.parse_args()
-        
-        # Blogger 서비스 객체 생성
-        blog_number = select_blog()
-        set_blog_id(blog_number)
-        service = get_credentials()
-        
-        # 블로그 ID 가져오기
-        blog_id = BLOGGER_BLOG_ID
-        if not blog_id:
-            print("Error: BLOGGER_BLOG_ID not found in .env file")
-            return
         
         # 직접 파일 포스팅 모드인 경우
         if args.posting:
@@ -359,7 +363,7 @@ def main():
             return
         
         # 자동 모드 확인
-        if args.auto:
+        if args.all:
             print(f"\n자동 모드: 모든 {content_type} HTML 파일 처리 중")
             success_count = 0
             failed_files = []
@@ -372,7 +376,7 @@ def main():
                     title, content = process_html_file(file)
                     
                     # 블로거에 포스팅
-                    if post_html_to_blogger(service, blog_id, content, title):
+                    if post_html_to_blogger(service, blog_id, file, title):
                         print(f"성공적으로 포스팅 완료: {title}")
                         
                         # 관련된 JSON 파일 찾기 및 삭제
@@ -380,7 +384,8 @@ def main():
                         if json_file and os.path.exists(json_file):
                             processed_jsons.add(json_file)
                         
-                        os.remove(file)
+                        if args.delete:
+                            os.remove(file)
                         success_count += 1
                         # 각 포스팅 사이에 30초 대기
                         if success_count < len(html_files):  # 마지막 파일이 아닌 경우에만 대기
@@ -432,10 +437,9 @@ def main():
             print("첨부 내용(HTML 구조 태그)을 제거하고 실제 콘텐츠만 포스팅합니다.")
             title, content = process_html_file(selected_file)
             
-            if post_html_to_blogger(service, blog_id, content, title):
+            if post_html_to_blogger(service, blog_id, selected_file, title):
                 print("\n블로거에 성공적으로 포스팅되었습니다!")
-                delete_file = input("포스팅된 파일을 삭제할까요? (y/n): ").lower()
-                if delete_file == 'y':
+                if args.delete:
                     os.remove(selected_file)
                     print(f"파일 삭제됨: {os.path.basename(selected_file)}")
             else:
