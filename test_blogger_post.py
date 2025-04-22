@@ -184,10 +184,9 @@ def main():
         
         # 8. 블로그 포스팅
         print("\n4. 블로그에 포스팅 중...")
-        blog_id = os.getenv('BLOGGER_BLOG_ID')
-        if not blog_id:
-            print("❌ BLOGGER_BLOG_ID 환경 변수가 설정되지 않았습니다.")
-            return
+        from config import BLOGGER_BLOG_ID
+        blog_id = BLOGGER_BLOG_ID
+        print(f"🌐 블로그 ID: {blog_id}")
             
         success = post_to_blogger(service, blog_id, content_with_images, title)
         

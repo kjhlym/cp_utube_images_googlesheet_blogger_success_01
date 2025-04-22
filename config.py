@@ -26,20 +26,12 @@ YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 # Blogger configuration
 BLOGGER_BLOGS = {
     1: {
-        'name': '테니스가 좋다',
-        'id': '2887648950361340299'
-    },
-    2: {
-        'name': '부업이 좋다',
-        'id': '2901491127168098993'
-    },
-    3: {
-        'name': '전기방식 프로',
+        'name': '전기방식프로',
         'id': '3529026030573801112'
     }
 }
 
-# 기본 블로그 설정 (1번: 테니스가 좋다)
+# 기본 블로그 설정 (전기방식프로)
 DEFAULT_BLOG_NUMBER = 1
 BLOGGER_BLOG_ID = BLOGGER_BLOGS[DEFAULT_BLOG_NUMBER]['id']
 WORK_DIR = os.getenv('WORK_DIR')

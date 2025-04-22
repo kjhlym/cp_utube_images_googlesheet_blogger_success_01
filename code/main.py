@@ -965,10 +965,16 @@ def process_youtube_and_products(video_url):
                     return html_file
                     
                 # 블로그 ID 얻기
-                blog_id = os.getenv('BLOGGER_BLOG_ID')
-                if not blog_id:
-                    print("❌ BLOGGER_BLOG_ID 환경 변수가 설정되지 않았습니다.")
-                    return html_file
+                try:
+                    from config import BLOGGER_BLOG_ID
+                    blog_id = BLOGGER_BLOG_ID
+                    print(f"🌐 블로그 ID: {blog_id}")
+                except (ImportError, AttributeError):
+                    # 환경 변수에서 가져오기 (폴백)
+                    blog_id = os.getenv('BLOGGER_BLOG_ID')
+                    if not blog_id:
+                        print("❌ BLOGGER_BLOG_ID 환경 변수가 설정되지 않았습니다.")
+                        return html_file
                     
                 # 블로그 업로드 - posting 폴더의 파일 전달
                 post_url = post_html_to_blogger(service, blog_id, posting_file, title)

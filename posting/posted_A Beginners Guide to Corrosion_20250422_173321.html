@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Beginners Guide to Corrosion Protection of Buried Pipes - 요약 및 추천 상품</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .video-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-thumbnail {
+        width: 100%;
+        max-width: 640px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .video-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+        color: #212121;
+    }
+    .video-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #606060;
+        margin-bottom: 15px;
+    }
+    .channel-name {
+        margin-right: 10px;
+    }
+    .view-count::before {
+        content: "•";
+        margin: 0 5px;
+    }
+    .summary-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .summary-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .keyword-tag {
+        display: inline-block;
+        background-color: #e6f2ff;
+        color: #0066cc;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .products-container {
+        margin-top: 40px;
+    }
+    .products-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .cup-list {
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .cup-list:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .product-name {
+        font-size: 16px;
+        margin-bottom: 15px;
+        line-height: 1.3;
+        height: 65px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .product-name a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+    .product-name a:hover {
+        text-decoration: underline;
+    }
+    .cup-img {
+        text-align: center;
+        margin: 15px 0;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+    .cup-img img {
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+    }
+    .cup-img img:hover {
+        transform: scale(1.05);
+    }
+    .product-price {
+        font-size: 18px;
+        color: #e94d4d;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .delivery-info {
+        color: #666;
+        font-size: 14px;
+    }
+    .ai-info {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #4285f4;
+    }
+    .ai-title {
+        color: #4285f4;
+        margin-top: 0;
+    }
+    .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+    .watch-btn {
+        display: inline-block;
+        background-color: #FF0000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background-color 0.2s;
+    }
+    .watch-btn:hover {
+        background-color: #D60000;
+    }
+    .section {
+        margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .cup-list {
+            padding: 15px;
+        }
+    }
+    @media (max-width: 480px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <style>
+    body {
+        font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .video-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .video-thumbnail {
+        width: 100%;
+        max-width: 640px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .video-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+        color: #212121;
+    }
+    .video-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #606060;
+        margin-bottom: 15px;
+    }
+    .channel-name {
+        margin-right: 10px;
+    }
+    .view-count::before {
+        content: "•";
+        margin: 0 5px;
+    }
+    .summary-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .summary-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .keyword-tag {
+        display: inline-block;
+        background-color: #e6f2ff;
+        color: #0066cc;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .products-container {
+        margin-top: 40px;
+    }
+    .products-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #212121;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 10px;
+    }
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .cup-list {
+        border: 1px solid #e0e0e0;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .cup-list:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    .product-name {
+        font-size: 16px;
+        margin-bottom: 15px;
+        line-height: 1.3;
+        height: 65px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .product-name a {
+        color: #0066cc;
+        text-decoration: none;
+    }
+    .product-name a:hover {
+        text-decoration: underline;
+    }
+    .cup-img {
+        text-align: center;
+        margin: 15px 0;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+    .cup-img img {
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+    }
+    .cup-img img:hover {
+        transform: scale(1.05);
+    }
+    .product-price {
+        font-size: 18px;
+        color: #e94d4d;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .delivery-info {
+        color: #666;
+        font-size: 14px;
+    }
+    .ai-info {
+        background-color: #f0f7ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #4285f4;
+    }
+    .ai-title {
+        color: #4285f4;
+        margin-top: 0;
+    }
+    .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+    .watch-btn {
+        display: inline-block;
+        background-color: #FF0000;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 15px;
+        transition: background-color 0.2s;
+    }
+    .watch-btn:hover {
+        background-color: #D60000;
+    }
+    .section {
+        margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .cup-list {
+            padding: 15px;
+        }
+    }
+    @media (max-width: 480px) {
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+
+   
+
+   
+
+    <div class="summary-container">
+       
+        <div class="summary-content">
+            
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>음극 방식 초보자 가이드 요약</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; }
+        .section { margin-bottom: 20px; padding: 15px; border: 1px solid #eee; border-radius: 5px; background-color: #f9f9f9; }
+        h2 { color: #333; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+        h3 { color: #555; margin-top: 15px; }
+        ul { margin-left: 20px; }
+        li { margin-bottom: 5px; }
+        strong { color: #0056b3; }
+        em { font-style: italic; color: #d9534f; }
+    </style>
+</head>
+<body>
+
+    <h2>음극 방식(Cathodic Protection) 초보자 가이드: 주요 내용 요약</h2>
+
+    <div class="section">
+        <h3>소개 및 발표자</h3>
+        <p>이 프레젠테이션은 파이프라인 산업 길드(Pipeline Industries Guild) 남동부 지부에서 주최했으며, Ken Lanks (Corrosion Co-Counsel UK Limited의 기술 이사)가 발표했습니다. Ken Lanks는 음극 방식 분야에서 오랜 경력을 가진 전문가입니다.</p>
+        <p>발표의 목적은 음극 방식 시스템을 설계하거나 전문가와 논쟁할 수준은 아니지만, <em>음극 방식이 무엇인지, 왜 필요한지, 어떻게 작동하는지에 대한 기본적인 이해</em>를 제공하는 것입니다. 복잡한 전기화학이나 수학 공식 없이 개념 중심으로 설명합니다.</p>
+        <p>전 세계 연간 부식 비용은 약 <strong>2.5조 달러</strong>에 달하며, 이 중 <em>80%</em>는 기존 기술로 예방 가능하다는 점이 강조되었습니다.</p>
+    </div>
+
+    <div class="section">
+        <h3>강철이 부식되는 이유</h3>
+        <p>강철의 부식은 에너지 보존 법칙과 관련이 있습니다. 철광석(자연 상태, 낮은 에너지)을 강철(높은 에너지 상태)로 제련하는 데 많은 에너지가 투입됩니다. 강철은 자연적으로 안정된 저에너지 상태(원래의 광석 형태)로 돌아가려는 경향이 있으며, 이 과정이 바로 <em>부식</em>입니다. 외부 요인(산성비, 부식성 토양, 전류 등)은 이 과정을 가속화합니다.</p>
+    </div>
+
+    <div class="section">
+        <h3>코팅의 역할: 1차 부식 방지책</h3>
+        <p>파이프라인 부식 방지 시스템은 일반적으로 두 부분으로 구성됩니다:</p>
+        <ul>
+            <li><strong>수동적 보호 시스템:</strong> 코팅 (Coating)</li>
+            <li><strong>능동적 보호 시스템:</strong> 음극 방식 (Cathodic Protection)</li>
+        </ul>
+        <p>코팅은 <em>가장 중요한 1차 부식 방지책</em>입니다. 코팅의 사양, 적용, 보관, 운송, 설치, 손상 시 수리(특히 현장 용접부 코팅)는 전체 시스템의 수명과 성능에 결정적인 영향을 미칩니다. 코팅 손상은 주로 운송 및 설치 중에 발생합니다.</p>
+        <p>음극 방식 설계 시 초기 코팅 상태뿐만 아니라 설계 수명(예: 20-30년) 말기의 코팅 상태까지 고려해야 합니다. 좋은 코팅은 필요한 음극 방식 전류량을 크게 줄여줍니다.</p>
+    </div>
+
+    <div class="section">
+        <h3>음극 방식(CP)의 원리</h3>
+        <p>부식은 전기화학적 과정이며, 음극 방식은 이 중 <strong>전기적 측면</strong>을 다룹니다.</p>
+        <ul>
+            <li><strong>옴의 법칙 (Ohm's Law):</strong> 전류(I) = 전압(V) / 저항(R). 전압은 전류를 밀어내는 힘, 저항은 흐름을 방해하는 요소입니다. 저항이 높거나 전압이 낮으면 전류는 작아집니다.</li>
+            <li><strong>부식 전류:</strong> 금속(파이프)에서 전해질(토양)로 전류(전자)가 흘러나가면서 금속 손실(부식)이 발생합니다.</li>
+            <li><strong>음극 방식의 작동:</strong> 외부 전원이나 희생 양극을 사용하여 파이프 표면, 특히 코팅 손상 부위(결함)로 <em>보호 전류를 강제로 흘려보냅니다</em>. 이 유입 전류는 자연적으로 유출되려는 부식 전류를 상쇄하거나 압도하여 부식을 방지합니다. 마치 전자 펌프처럼 작동합니다.</li>
+            <li><strong>전기 회로:</strong> 음극 방식이 작동하려면 양극(Anode), 파이프(Cathode), 전해질(토양 또는 물), 그리고 이들을 연결하는 완전한 전기 회로가 필요합니다.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>음극 방식의 종류</h3>
+        <p>음극 방식에는 두 가지 주요 유형이 있습니다:</p>
+        <ul>
+            <li><strong>갈바닉(희생 양극) 방식 (Galvanic / Sacrificial Anode System):</strong>
+                <ul>
+                    <li>파이프(강철)보다 더 활동적인 금속(마그네슘, 알루미늄, 아연 등)으로 만든 양극을 사용합니다. (갈바닉 서열 참고)</li>
+                    <li>이 금속들이 대신 부식(희생)되면서 파이프를 보호합니다.</li>
+                    <li>자체 전위차(약 1~1.5V)로 전류를 생성하므로 <em>외부 전원이 필요 없습니다</em>.</li>
+                    <li>구동 전압이 낮아 저항이 높은 환경에서는 효과가 제한적일 수 있으며, 양극 수명이 다하면 교체해야 합니다. (약 80% 소모 시 효율 급감)</li>
+                </ul>
+            </li>
+            <li><strong>외부 전원 방식 (Impressed Current System):</strong>
+                <ul>
+                    <li>상대적으로 비활성인 재료(혼합 금속 산화물, 고규소철 등)로 만든 양극을 사용하고, 외부 직류 전원(변압 정류기(TRU), 태양 전지 등)을 연결하여 전류를 공급합니다.</li>
+                    <li><em>더 높은 구동 전압</em>을 제공할 수 있어 적용 범위가 넓고 전류량 조절이 가능합니다.</li>
+                    <li>양극 수명이 길고, 자동 전위 제어 시스템 적용이 가능합니다.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>음극 방식 설계 및 평가</h3>
+        <p><strong>설계 고려 사항:</strong></p>
+        <ul>
+            <li>코팅 품질 (초기 및 장기)</li>
+            <li>보호 대상 파이프의 총 표면적</li>
+            <li>토양 비저항 (전류 흐름 용이성)</li>
+            <li>설계 수명</li>
+            <li>직류(DC) 및 교류(AC) 간섭 가능성</li>
+            <li>인접 구조물(타 파이프, 접지 시스템)</li>
+            <li>지형 및 구조물 위치 (도로, 강, 철도 횡단 등)</li>
+            <li>양극 배치 (전류 분포 최적화 - 손전등/촛불 비유)</li>
+        </ul>
+        <p><strong>효과 평가:</strong></p>
+        <ul>
+            <li>파이프와 기준 전극(보통 황산구리 기준 전극, CSE) 사이의 <em>전위(Potential)</em>를 측정합니다.</li>
+            <li>일반적으로 권장되는 보호 전위 범위는 <strong>-0.85V ~ -1.2V (CSE 기준)</strong>입니다.</li>
+            <li>이 범위는 절대적인 기준이라기보다는 여러 요인(측정 위치, 간섭 등)을 고려해야 하는 지침입니다.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>간섭 전류 (Stray Current Interference)</h3>
+        <p>원치 않는 외부 전류는 파이프라인에 심각한 부식 문제를 일으킬 수 있습니다.</p>
+        <ul>
+            <li><strong>직류(DC) 간섭:</strong>
+                <ul>
+                    <li>주요 발생원: DC 전기 철도, 트램, 용접 작업, HVDC 송전선, 풍력 발전 단지, 인접 CP 시스템, 우주 기상 현상 등.</li>
+                    <li><em>매우 빠른 국부 부식</em>을 유발할 수 있습니다. (패러데이 법칙: 1A의 DC 전류는 연간 약 9.1kg의 강철을 부식시킴)</li>
+                    <li>에너지 복도(파이프라인, 전력선 등 밀집 지역)에서 문제가 증가하고 있습니다.</li>
+                </ul>
+            </li>
+            <li><strong>교류(AC) 간섭:</strong>
+                <ul>
+                    <li>주요 발생원: 고압 송전선로 (전자기 유도).</li>
+                    <li>AC 부식 위험뿐 아니라, 파이프 접촉 시 <em>감전 위험(Touch Potential)</em>을 야기할 수 있습니다.</li>
+                    <li>분석 및 평가가 복잡합니다.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>결론 및 핵심 요약</h3>
+        <ul>
+            <li>파이프에서 전류가 나가는 것이 <strong>부식</strong>입니다.</li>
+            <li>음극 방식은 파이프로 전류를 흘려보내 부식을 <strong>방지</strong>하는 기술입니다.</li>
+            <li><strong>코팅</strong>은 가장 중요한 1차 방어선이며, 음극 방식 설계에 큰 영향을 미칩니다.</li>
+            <li>현대의 고품질 코팅은 손상 부위가 작더라도 해당 지점에 부식이 <em>집중</em>되어 빠르게 진행될 수 있습니다.</li>
+            <li><strong>간섭 전류(DC 및 AC)</strong>는 파이프라인 건전성에 심각한 위협이며, 점점 더 중요해지고 있습니다.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>추가 정보</h3>
+        <p>더 깊은 학습을 원하면 Pig YouTube 채널의 다른 프레젠테이션, NACE International (구 부식 학회), 영국 부식 학회(ICorr) 등의 자료를 참고할 수 있습니다.</p>
+    </div>
+
+</body>
+</html>
+
+        </div>
+    </div>
+    
+        <div class="products-container">
+            <h2 class="products-title">🛒 관련 추천 상품</h2>
+           
+            <div class="product-grid">
+        
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8079600129&itemId=22775378644&vendorItemId=89810449077&traceid=V0-153-de20eb4671f2fc82&requestid=20250422173318585295811339&token=31850C%7CGM" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            렌코 희생 양극
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8079600129&itemId=22775378644&vendorItemId=89810449077&traceid=V0-153-de20eb4671f2fc82&requestid=20250422173318585295811339&token=31850C%7CGM" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/vaz_q0e8D3oE4HUFvVfWOTOF4xYt3Csq8sKdeSsKTYJWeOopx2DpafmFaRp9pYV5e5iisOePXv-PD4Yw2QA2tWOofMuTYV28Iqi6Uoby7aUctk40fvct0af1E4GS6NGhPAEVqj5qjHRtwgzw5rb3OtVK5Ya_0RF95ZdSiAFGk0XSO2r-ApryqieaCxOIQjZSvaXB7ljXjD1JItRiHCRpKVZjn8qrDgzHdHomwPaWl7EXoB3GjQ5OcGoau8C5Poo-n6oyx__gOUz7_-OYgLShdcj-4VEvDNGygDUlNEjWFBE-29Ttg4BGtVC0qsNiju5ifAQ8JgvTq0lIpwHBuG1uiH55qNvei5BYsiM=" 
+                    alt="렌코 희생 양극" 
+                    title="렌코 희생 양극"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/vaz_q0e8D3oE4HUFvVfWOTOF4xYt3Csq8sKdeSsKTYJWeOopx2DpafmFaRp9pYV5e5iisOePXv-PD4Yw2QA2tWOofMuTYV28Iqi6Uoby7aUctk40fvct0af1E4GS6NGhPAEVqj5qjHRtwgzw5rb3OtVK5Ya_0RF95ZdSiAFGk0XSO2r-ApryqieaCxOIQjZSvaXB7ljXjD1JItRiHCRpKVZjn8qrDgzHdHomwPaWl7EXoB3GjQ5OcGoau8C5Poo-n6oyx__gOUz7_-OYgLShdcj-4VEvDNGygDUlNEjWFBE-29Ttg4BGtVC0qsNiju5ifAQ8JgvTq0lIpwHBuG1uiH55qNvei5BYsiM%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 56,100원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7866494463&itemId=21478036239&vendorItemId=88532247203&traceid=V0-153-8b64b3a903dd4124&clickBeacon=71910a10-1f54-11f0-ae35-ca18b8fb236f%7E3&requestid=20250422173319078025441528&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            델리툴즈 멀티 테스터 전기 테스터기 디지털 멀티미터 전압 측정기 1개
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7866494463&itemId=21478036239&vendorItemId=88532247203&traceid=V0-153-8b64b3a903dd4124&clickBeacon=71910a10-1f54-11f0-ae35-ca18b8fb236f%7E3&requestid=20250422173319078025441528&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/yMNxbf8scWyG7sC1yPVOAERvP1qvLs9KBjcGzqJhhEjydbrRx5UxmZxUq38RPeJxlxNg6s66cqZHuoEevWV4FZdhu5lhy8no1bS0lF4NniqJYKGHz0h2GzMQOUzFIlKYMuhoi9IbTZkVND5qUdCR5PtU8fClZZ2ZQ6SynNxkFNiCQrevrYbTMi96Yo5ciFH_35orOs2fFlxcqsKsQh2QFWO6pa_xVsCv6T8ui0r-0Q1Vu8Ktk30y0Y_gVmcVSBuJBcoJFOUHTPtYlYYAVulpw3tiCgdh1s3U8EF8AiGNRKQ8UrihFztJwrn2AgVK2UdudxrIhmd7VrQWsHpRvIs87dqlDppbWi8A" 
+                    alt="델리툴즈 멀티 테스터 전기 테스터기 디지털 멀티미터 전압 측정기 1개" 
+                    title="델리툴즈 멀티 테스터 전기 테스터기 디지털 멀티미터 전압 측정기 1개"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/yMNxbf8scWyG7sC1yPVOAERvP1qvLs9KBjcGzqJhhEjydbrRx5UxmZxUq38RPeJxlxNg6s66cqZHuoEevWV4FZdhu5lhy8no1bS0lF4NniqJYKGHz0h2GzMQOUzFIlKYMuhoi9IbTZkVND5qUdCR5PtU8fClZZ2ZQ6SynNxkFNiCQrevrYbTMi96Yo5ciFH_35orOs2fFlxcqsKsQh2QFWO6pa_xVsCv6T8ui0r-0Q1Vu8Ktk30y0Y_gVmcVSBuJBcoJFOUHTPtYlYYAVulpw3tiCgdh1s3U8EF8AiGNRKQ8UrihFztJwrn2AgVK2UdudxrIhmd7VrQWsHpRvIs87dqlDppbWi8A&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 33,900원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7748484317&itemId=20865217917&vendorItemId=87932585215&traceid=V0-153-ba0a178f86001ea6&clickBeacon=716f2a30-1f54-11f0-916d-e4dfe22e2ebc%7E3&requestid=20250422173318861127316001&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            [본사정품] 카밈 나노 실리콘 스프레이 2개 420ml
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7748484317&itemId=20865217917&vendorItemId=87932585215&traceid=V0-153-ba0a178f86001ea6&clickBeacon=716f2a30-1f54-11f0-916d-e4dfe22e2ebc%7E3&requestid=20250422173318861127316001&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/zVXpLo712UKavLaUzdp23b-Db1fmspQug_qfXr-tuO6gDiaifpqIij2a70nwKc246yQkeqRVXHfabJN3WlixcVT22SKl4KSkR2sqseP2blzTQfm1T__uJQxL-HZTVRj8hWiuMo5qRpkAGt3HpwHxKeHX1kh5hsVQKRA4gPjhbynPHJuMiuHpMyNS4nRwZKDb3JRryYWp88OkAbLJvTXdIH4rddIXh1kfqd0iVxFGAH6zLKqbXCLzMcQVyC-kDHvhPKMJT-pvCWayU-RaqNyboa2ZusL7KGTBqSeNXhQl5GfemU3gOENe3WU_s4r0tyzp9ec3U_TuXyopfd6ACqtjN63627AEzqU08Iu9w3cDWQ==" 
+                    alt="[본사정품] 카밈 나노 실리콘 스프레이 2개 420ml" 
+                    title="[본사정품] 카밈 나노 실리콘 스프레이 2개 420ml"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/zVXpLo712UKavLaUzdp23b-Db1fmspQug_qfXr-tuO6gDiaifpqIij2a70nwKc246yQkeqRVXHfabJN3WlixcVT22SKl4KSkR2sqseP2blzTQfm1T__uJQxL-HZTVRj8hWiuMo5qRpkAGt3HpwHxKeHX1kh5hsVQKRA4gPjhbynPHJuMiuHpMyNS4nRwZKDb3JRryYWp88OkAbLJvTXdIH4rddIXh1kfqd0iVxFGAH6zLKqbXCLzMcQVyC-kDHvhPKMJT-pvCWayU-RaqNyboa2ZusL7KGTBqSeNXhQl5GfemU3gOENe3WU_s4r0tyzp9ec3U_TuXyopfd6ACqtjN63627AEzqU08Iu9w3cDWQ%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 32,800원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=5728615807&itemId=22567889452&vendorItemId=89609762553&traceid=V0-153-293de6347174737f&clickBeacon=71a1fa00-1f54-11f0-be4d-cf8bf9e60a23%7E3&requestid=20250422173319218127316080&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            사비 방청 프라이머 사비 락카 녹방지 스프레이 30개
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=5728615807&itemId=22567889452&vendorItemId=89609762553&traceid=V0-153-293de6347174737f&clickBeacon=71a1fa00-1f54-11f0-be4d-cf8bf9e60a23%7E3&requestid=20250422173319218127316080&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/aq-PT5GYFEmPxc6pavE3FeTGLYb8J8byr9jAbjYGlrgz-sqfvqiVR4GwfMHuhHOOBzB9b8O41idQUYRfT8HCxTpuZXnEjDq4Ik5Hh7ZA14V3g62h9X3BWB_U2WKFMrIyIZlgq7whZLXxg9Ks3CcT4UZetF5aQEHDZO64zqrdDipkw8lrHnw2DmBcyR5n2stXk7eGfStPJwBGEAws5c2Rh1XJoX8R_ACPgjr_J2KWk_OU1azac_eKd5Auw-MCQ54koGQsCcxh4jHkjG-mgCcWyCwUkAQ0tgiO62H4jR3hPYSlv2_1qI7z1NEYCnz0_hukig7HuPHwwTtMS74KJeizFgnx6WRkp8sc1ynLJrx-e6A=" 
+                    alt="사비 방청 프라이머 사비 락카 녹방지 스프레이 30개" 
+                    title="사비 방청 프라이머 사비 락카 녹방지 스프레이 30개"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/aq-PT5GYFEmPxc6pavE3FeTGLYb8J8byr9jAbjYGlrgz-sqfvqiVR4GwfMHuhHOOBzB9b8O41idQUYRfT8HCxTpuZXnEjDq4Ik5Hh7ZA14V3g62h9X3BWB_U2WKFMrIyIZlgq7whZLXxg9Ks3CcT4UZetF5aQEHDZO64zqrdDipkw8lrHnw2DmBcyR5n2stXk7eGfStPJwBGEAws5c2Rh1XJoX8R_ACPgjr_J2KWk_OU1azac_eKd5Auw-MCQ54koGQsCcxh4jHkjG-mgCcWyCwUkAQ0tgiO62H4jR3hPYSlv2_1qI7z1NEYCnz0_hukig7HuPHwwTtMS74KJeizFgnx6WRkp8sc1ynLJrx-e6A%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 60,000원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=5207175456&itemId=22226113816&vendorItemId=74564375020&traceid=V0-153-891d9528950693d4&requestid=20250422173319078025441528&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            아사히 테스터기 4201
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=5207175456&itemId=22226113816&vendorItemId=74564375020&traceid=V0-153-891d9528950693d4&requestid=20250422173319078025441528&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/W7IpSNMnsEOZmdCDW2sYToJi9zqpcTZZAajOdhH0Ywc4CXmnmmSUleo8CSQY02MvfJRCCgB3Gi4RpEbcjCca2WpfW2069wLcncPDPchRizNFRS7oGb1QYLJE3DF_kiBX7s97nzJVE5qeLnvtKXdNENRMQzAFA8e-P72-AeHcFz92LmmajI-_SK4WhlsP-p79hxuHlOmSL_Z_rrA69Qxi6N5frUUmu1DVrzWHVeHDGJL1L8CfwmySl2rw-KDG3H5A5fvR-2Z5Jp3m_914ksquERTt0UdM_-RsQvc7ChYL79Qz18MZdqINlsr1ckj8NHoJW3aIf0r0afPSu60yW9ZjOSM2RdcQu9Y37DE=" 
+                    alt="아사히 테스터기 4201" 
+                    title="아사히 테스터기 4201"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/W7IpSNMnsEOZmdCDW2sYToJi9zqpcTZZAajOdhH0Ywc4CXmnmmSUleo8CSQY02MvfJRCCgB3Gi4RpEbcjCca2WpfW2069wLcncPDPchRizNFRS7oGb1QYLJE3DF_kiBX7s97nzJVE5qeLnvtKXdNENRMQzAFA8e-P72-AeHcFz92LmmajI-_SK4WhlsP-p79hxuHlOmSL_Z_rrA69Qxi6N5frUUmu1DVrzWHVeHDGJL1L8CfwmySl2rw-KDG3H5A5fvR-2Z5Jp3m_914ksquERTt0UdM_-RsQvc7ChYL79Qz18MZdqINlsr1ckj8NHoJW3aIf0r0afPSu60yW9ZjOSM2RdcQu9Y37DE%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 13,300원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8672110627&itemId=25174759375&vendorItemId=92171911939&traceid=V0-153-3fdb8692e406ceb6&requestid=20250422173318585295811339&token=31850C%7CGM" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            고순도 마그네슘 희생 양극로드 온수기 성능 내구성 향상에 적합합니다
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8672110627&itemId=25174759375&vendorItemId=92171911939&traceid=V0-153-3fdb8692e406ceb6&requestid=20250422173318585295811339&token=31850C%7CGM" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/shx4m-9cPX2vGcHesmMeRDB55df5zXGtITtjzCSgUGj_Vdd-6Q7k6q9I5nGuyedRQHrNW2BPtoGkmjZgPNo5VfqDGpSpsZQAHLAG4jbRna7x9Uv8wGf9zVaRl7fteKPbWZu-ppu5fyfeVxhkZOYjyzNH6NmWAAGvQTyABfY6klAnc_-QWu15Q5oiQUcVDeqq7_u4jJMm3kNQORkMHnxTw0KZifuXMPUfXWJik6PZdRnmCr_bqlfFzU33CQN3MJmKU4PzG60BKGKdLvmqnw5CGbpEvhbzMdkQl5RTkXKUdRr0vC0zKk4I3Jz_hWT0nclNu0_h3cii1JpP8qvyE-XrG10r9Q==" 
+                    alt="고순도 마그네슘 희생 양극로드 온수기 성능 내구성 향상에 적합합니다" 
+                    title="고순도 마그네슘 희생 양극로드 온수기 성능 내구성 향상에 적합합니다"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/shx4m-9cPX2vGcHesmMeRDB55df5zXGtITtjzCSgUGj_Vdd-6Q7k6q9I5nGuyedRQHrNW2BPtoGkmjZgPNo5VfqDGpSpsZQAHLAG4jbRna7x9Uv8wGf9zVaRl7fteKPbWZu-ppu5fyfeVxhkZOYjyzNH6NmWAAGvQTyABfY6klAnc_-QWu15Q5oiQUcVDeqq7_u4jJMm3kNQORkMHnxTw0KZifuXMPUfXWJik6PZdRnmCr_bqlfFzU33CQN3MJmKU4PzG60BKGKdLvmqnw5CGbpEvhbzMdkQl5RTkXKUdRr0vC0zKk4I3Jz_hWT0nclNu0_h3cii1JpP8qvyE-XrG10r9Q%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 11,400원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=6393424373&itemId=19390920838&vendorItemId=91655540569&traceid=V0-153-90a60fcf5e54c0ec&requestid=20250422173318861127316001&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            예코아 영일 방청 프라이머 녹방지 스프레이 420ml 270g YL-503
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=6393424373&itemId=19390920838&vendorItemId=91655540569&traceid=V0-153-90a60fcf5e54c0ec&requestid=20250422173318861127316001&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/Wjm1vWzxMYzcBhk7WqP2nS1L8V1k52NY10J5uqUYApbbVboItgYJJJmT5EkNj-FEFI85dN4QhQkjPCzjFt4POFsA3TbWvaUALtV0RrcAg9ZvJsRh-s8_Skn7KfS1VQht9PRAUcp0ir4PopI8mu9uTTblBYkc8qzGxfQjWdstWeqmF5MNMbfU6vp7lIHGHo_aj9N3D4pB-vanYvVEkOrcuT1YdNl5XdOh1YEuUEtHVL_Xbf93fDwp44OP-ayNImk_vzJb0_qNSrpBih-sfORLFDplg1cj8qNjG8GAmCQzRQXV3DiRM_QA97EzMjVCpWd2d6GGPSlG8wH09A==" 
+                    alt="예코아 영일 방청 프라이머 녹방지 스프레이 420ml 270g YL-503" 
+                    title="예코아 영일 방청 프라이머 녹방지 스프레이 420ml 270g YL-503"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/Wjm1vWzxMYzcBhk7WqP2nS1L8V1k52NY10J5uqUYApbbVboItgYJJJmT5EkNj-FEFI85dN4QhQkjPCzjFt4POFsA3TbWvaUALtV0RrcAg9ZvJsRh-s8_Skn7KfS1VQht9PRAUcp0ir4PopI8mu9uTTblBYkc8qzGxfQjWdstWeqmF5MNMbfU6vp7lIHGHo_aj9N3D4pB-vanYvVEkOrcuT1YdNl5XdOh1YEuUEtHVL_Xbf93fDwp44OP-ayNImk_vzJb0_qNSrpBih-sfORLFDplg1cj8qNjG8GAmCQzRQXV3DiRM_QA97EzMjVCpWd2d6GGPSlG8wH09A%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 3,490원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8579740105&itemId=25283001795&vendorItemId=92278548768&traceid=V0-153-4a7fd7a66e1077bf&requestid=20250422173318585295811339&token=31850C%7CGM" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            순수 아연 막대 원형 전극 희생 양극 직경 부식 방지
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8579740105&itemId=25283001795&vendorItemId=92278548768&traceid=V0-153-4a7fd7a66e1077bf&requestid=20250422173318585295811339&token=31850C%7CGM" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/BlDZGzRts3Qr4VIABuAJUV1fSGnhrFesJTEvWimASxx9bhWGLUcDNo7fdi5GoX6PDvt_A5m0Vnd_2nh4Y1QnxWd5XmnG122-Gy2tMVlMoz2t8b6yRLmlVLZ316_gG6_1iLQlbn02dE9R3LPYMpA-Wehdy28V7A04KNbTJNaXrLDeHNVSJwd9RFIaNbwnzmrfyjaRN_h4F8TepTuIytngvnJFfQmGM8PuSy7kDGRw0ZhMBEyYA4V_onjs7VG2zYytCrFWkQOTtA4ImgwbE4IXm0oItqofv1suXqavpJlAlw3MlTgV81BCEmQ6VVnNWf1RY8EwpyPpYKYvNsNcu4GdRJQwP1iXuJECEBue" 
+                    alt="순수 아연 막대 원형 전극 희생 양극 직경 부식 방지" 
+                    title="순수 아연 막대 원형 전극 희생 양극 직경 부식 방지"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/BlDZGzRts3Qr4VIABuAJUV1fSGnhrFesJTEvWimASxx9bhWGLUcDNo7fdi5GoX6PDvt_A5m0Vnd_2nh4Y1QnxWd5XmnG122-Gy2tMVlMoz2t8b6yRLmlVLZ316_gG6_1iLQlbn02dE9R3LPYMpA-Wehdy28V7A04KNbTJNaXrLDeHNVSJwd9RFIaNbwnzmrfyjaRN_h4F8TepTuIytngvnJFfQmGM8PuSy7kDGRw0ZhMBEyYA4V_onjs7VG2zYytCrFWkQOTtA4ImgwbE4IXm0oItqofv1suXqavpJlAlw3MlTgV81BCEmQ6VVnNWf1RY8EwpyPpYKYvNsNcu4GdRJQwP1iXuJECEBue&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 51,900원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8271325403&itemId=23837962094&vendorItemId=70850444705&traceid=V0-153-f60dfaeb2e2e427e&requestid=20250422173319078025441528&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            ZOYI 디지털 멀티테스터기 ZT102
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=8271325403&itemId=23837962094&vendorItemId=70850444705&traceid=V0-153-f60dfaeb2e2e427e&requestid=20250422173319078025441528&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/H-sCPMeSKnMD_wq7H2LFtnElFv3EMXPRmwz5-31OB3rFbFgmWBRGBlFTUSXcGPcMNdb7Z9ZN7ZhLaAJhweTL0cJKn9BEd2MujwVGVqasGn9UG6FJ1ZjYtmbMaKBOEba8tZeSonmQGw84nXgD3KZWvD5tez44qjNWQ9Y1a4SV2W0BJth_5qU-QPlgHNEum9oeDuWFv1SS8Cb8dgro8_E0UPVVtMClBDWwYhv2X-AovIe5jZxZKNP0N0TuFvErzUEG1kWAJpd50Cgf4mQ--DXoWx8TboapVkHut3NnQZ6b8jootq7xfy0ArIpiHGJoivfAxhGp4LKNFoFRXq0Wxc6tFy-STw==" 
+                    alt="ZOYI 디지털 멀티테스터기 ZT102" 
+                    title="ZOYI 디지털 멀티테스터기 ZT102"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/H-sCPMeSKnMD_wq7H2LFtnElFv3EMXPRmwz5-31OB3rFbFgmWBRGBlFTUSXcGPcMNdb7Z9ZN7ZhLaAJhweTL0cJKn9BEd2MujwVGVqasGn9UG6FJ1ZjYtmbMaKBOEba8tZeSonmQGw84nXgD3KZWvD5tez44qjNWQ9Y1a4SV2W0BJth_5qU-QPlgHNEum9oeDuWFv1SS8Cb8dgro8_E0UPVVtMClBDWwYhv2X-AovIe5jZxZKNP0N0TuFvErzUEG1kWAJpd50Cgf4mQ--DXoWx8TboapVkHut3NnQZ6b8jootq7xfy0ArIpiHGJoivfAxhGp4LKNFoFRXq0Wxc6tFy-STw%3D%3D&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 21,780원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            🚀 로켓배송 
+                            | 유료배송
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cup-list" style="border: 1px solid #e0e0e0; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; background-color: white; display: flex; flex-direction: column; height: 100%;">
+                    <div class="product-name" style="font-size: 16px; margin-bottom: 15px; line-height: 1.3; height: 65px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7843964057&itemId=21288659291&vendorItemId=88419160461&traceid=V0-153-11ea0c0d8ab2fb26&requestid=20250422173318861127316001&token=31850C%7CMIXED" target="_blank" rel="nofollow" style="color: #0066cc; text-decoration: none;">
+                            [다양다방] 에어졸 A-1000 은색 아연도금 코팅제 (보수/방청 스프레이)
+                        </a>
+                    </div>
+                    <div class="cup-img" style="text-align: center; margin: 15px 0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9f9f9; border-radius: 4px;">
+                        <a href="https://link.coupang.com/re/AFFSDP?lptag=AF4882931&subid=AF4882931&pageKey=7843964057&itemId=21288659291&vendorItemId=88419160461&traceid=V0-153-11ea0c0d8ab2fb26&requestid=20250422173318861127316001&token=31850C%7CMIXED" target="_blank" rel="nofollow">
+                            <img src="https://ads-partners.coupang.com/image1/Oa2AxtQXi0vBuJBEOfwIChnOIx5x5_AyB0AXy5haGPaPwQcqrfauCmC5swoizGv4XcZxzv1IsX6lHo3xJBUuSpfV89vLfYBDp4D5Ohpb8gBTZ0GnWYHBC3zZlp7f1kbUDQyhqC2cLtjBI4mlgCjkL017dq6Y-IM_1mb79Ryvc8snNegYkmBTzYX3VtBeHW-BSbd5uGOOGxkHb-AV8ljnJr0JscJzT65cxz3RCtDZ535-aFUTLP-3tPBYLBYd-SNs-7G16pUrGlPfAdXUEN4-zYKEWxojyfls0NXsX3uuz9eeZyQRWxUknPLGIVRPhvfjnsEj_X7LaK3bvRro7tJReCxbegYKns4rSQ5g" 
+                    alt="[다양다방] 에어졸 A-1000 은색 아연도금 코팅제 (보수/방청 스프레이)" 
+                    title="[다양다방] 에어졸 A-1000 은색 아연도금 코팅제 (보수/방청 스프레이)"
+                    loading="lazy"
+                    style="max-width: 100%; max-height: 180px; display: block; margin: 0 auto; border-radius: 4px; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    onerror="this.onerror=null; if (!this.src.includes('wsrv.nl')) {this.src='https://wsrv.nl/?url=https%3A//ads-partners.coupang.com/image1/Oa2AxtQXi0vBuJBEOfwIChnOIx5x5_AyB0AXy5haGPaPwQcqrfauCmC5swoizGv4XcZxzv1IsX6lHo3xJBUuSpfV89vLfYBDp4D5Ohpb8gBTZ0GnWYHBC3zZlp7f1kbUDQyhqC2cLtjBI4mlgCjkL017dq6Y-IM_1mb79Ryvc8snNegYkmBTzYX3VtBeHW-BSbd5uGOOGxkHb-AV8ljnJr0JscJzT65cxz3RCtDZ535-aFUTLP-3tPBYLBYd-SNs-7G16pUrGlPfAdXUEN4-zYKEWxojyfls0NXsX3uuz9eeZyQRWxUknPLGIVRPhvfjnsEj_X7LaK3bvRro7tJReCxbegYKns4rSQ5g&default=https://via.placeholder.com/200x200?text=No+Image&n=-1';} else {this.src='https://via.placeholder.com/200x200?text=No+Image';}" />
+                        </a>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <div class="product-price" style="font-size: 18px; color: #e94d4d; font-weight: bold; margin: 10px 0; text-align: center;">
+                            💰 18,990원
+                        </div>
+                        <div class="delivery-info" style="color: #666; font-size: 14px; text-align: center;">
+                            일반배송 
+                            | ✨ 무료배송
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    <div class="footer">
+       
+        <p>"이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."</p>
+    </div>
+    
+</body>
+</html>

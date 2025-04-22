@@ -988,11 +988,10 @@ def process_youtube_and_products(video_url):
                     print("❌ Blogger API 서비스 초기화 실패")
                     return html_file
                     
-                # 블로그 ID 얻기
-                blog_id = os.getenv('BLOGGER_BLOG_ID')
-                if not blog_id:
-                    print("❌ BLOGGER_BLOG_ID 환경 변수가 설정되지 않았습니다.")
-                    return html_file
+                # config.py에서 블로그 ID 가져오기
+                from config import BLOGGER_BLOG_ID
+                blog_id = BLOGGER_BLOG_ID
+                print(f"🌐 블로그 ID: {blog_id}")
                     
                 # 블로그 업로드 - posting 폴더의 파일 전달
                 post_url = post_html_to_blogger(service, blog_id, posting_file, title)
@@ -1878,7 +1877,11 @@ def post_to_blogger(html_file_path, title):
             print("❌ Blogger API 서비스 생성 실패")
             return False
             
-        return post_html_to_blogger(service, blog_number, html_file_path, title)
+        # BLOGGER_BLOG_ID 값 사용 (blog_number가 아님)
+        from config import BLOGGER_BLOG_ID
+        print(f"🌐 선택된 블로그 ID: {BLOGGER_BLOG_ID}")
+            
+        return post_html_to_blogger(service, BLOGGER_BLOG_ID, html_file_path, title)
     except Exception as e:
         print(f"❌ 블로거 포스팅 중 오류 발생: {str(e)}")
         return False
@@ -2493,11 +2496,10 @@ def main():
             # 블로그 업로드 자동 진행
             print("\n===== 블로그에 자동으로 포스팅 중 =====")
             
-            # .env 파일에서 블로그 ID 가져오기
-            blog_id = os.getenv('BLOGGER_BLOG_ID')
-            if not blog_id:
-                print("⚠️ .env 파일에 BLOGGER_BLOG_ID가 설정되지 않았습니다.")
-                blog_id = input("Blogger 블로그 ID를 입력하세요: ").strip()
+            # config.py에서 블로그 ID 가져오기
+            from config import BLOGGER_BLOG_ID
+            blog_id = BLOGGER_BLOG_ID
+            print(f"🌐 블로그 ID: {blog_id}")
             
             # 블로거 서비스 얻기 (자동으로 토큰 재생성 시도)
             service = get_credentials()
@@ -2663,6 +2665,28 @@ def get_youtube_info(youtube_url):
     except Exception as e:
         print(f"⚠️ YouTube 정보 처리 중 오류 발생: {str(e)}")
         return None
+
+def post_to_blogger(html_file_path, title):
+    """HTML 파일을 블로거에 포스팅하는 함수"""
+    try:
+        print("\n=== 블로그 선택 ===")
+        print(get_blog_list_text())
+        blog_number = select_blog()
+        set_blog_id(blog_number)
+        
+        service = get_credentials()
+        if not service:
+            print("❌ Blogger API 서비스 생성 실패")
+            return False
+            
+        # BLOGGER_BLOG_ID 값 사용 (blog_number가 아님)
+        from config import BLOGGER_BLOG_ID
+        print(f"🌐 선택된 블로그 ID: {BLOGGER_BLOG_ID}")
+            
+        return post_html_to_blogger(service, BLOGGER_BLOG_ID, html_file_path, title)
+    except Exception as e:
+        print(f"❌ 블로거 포스팅 중 오류 발생: {str(e)}")
+        return False
 
 if __name__ == "__main__":
     main()
